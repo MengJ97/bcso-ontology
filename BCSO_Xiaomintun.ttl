@@ -1,0 +1,2445 @@
+@prefix : <https://w3id.org/BCSO#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix osdba: <https://w3id.org/OSDBA#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://w3id.org/BCSO#> .
+
+<https://w3id.org/BCSO/Xiaomintun> rdf:type owl:Ontology ;
+                                    owl:imports <https://w3id.org/BCSO> ;
+                                    dcterms:creator "Meng Jiang" ;
+                                    dcterms:license <http://creativecommons.org/licenses/by/4.0/> ;
+                                    dcterms:title "BCSO Xiaomintun Instances: Instance Data for Bronze Casting Site Ontology"@en ,
+                                                  "BCSO孝民屯实例：青铜铸造遗址本体实例数据"@zh ;
+                                    owl:versionInfo "1.0-Xiaomintun" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by
+crm:P14_carried_out_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by
+crm:P1_is_identified_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P45_consists_of
+crm:P45_consists_of rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of
+crm:P46_is_composed_of rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P53_has_former_or_current_location
+crm:P53_has_former_or_current_location rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by
+crm:P67i_is_referred_to_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P69_has_association_with
+crm:P69_has_association_with rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/BCSO#belongsToPeriod
+:belongsToPeriod rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf crm:P1_is_identified_by ;
+                 rdfs:range :Period ;
+                 rdfs:comment "Indicates the historical period to which the site, feature, or object belongs."@en ,
+                              "指示遗址、遗迹或遗物所属的历史时期。"@zh ;
+                 rdfs:label "belongs to period"@en ,
+                            "所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#carriedOutBy
+:carriedOutBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf crm:P14_carried_out_by ;
+              rdfs:domain :ExcavationActivity ;
+              rdfs:range :ArchaeologicalUnit ;
+              rdfs:comment "Indicates the archaeological unit that carried out the excavation activity."@en ,
+                           "指示执行发掘活动的考古单位。"@zh ;
+              rdfs:label "carried out by"@en ,
+                         "由单位执行"@zh .
+
+
+###  https://w3id.org/BCSO#conductedAtSite
+:conductedAtSite rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ExcavationActivity ;
+                 rdfs:range :CastingSite ;
+                 rdfs:comment "Indicates the casting site where the excavation activity was conducted."@en ,
+                              "指示发掘活动进行的铸造遗址。"@zh ;
+                 rdfs:label "conducted at site"@en ,
+                            "在遗址进行活动"@zh .
+
+
+###  https://w3id.org/BCSO#excavatedFrom
+:excavatedFrom rdf:type owl:ObjectProperty ;
+               rdfs:domain :ExcavatedObject ;
+               rdfs:range :AnthropicFeature ;
+               rdfs:comment "Indicates the anthropic feature from which the object was excavated."@en ,
+                            "指示遗物出土的遗迹单元。"@zh ;
+               rdfs:label "excavated from"@en ,
+                          "出土于遗迹"@zh .
+
+
+###  https://w3id.org/BCSO#featureBelongsToPeriod
+:featureBelongsToPeriod rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :belongsToPeriod ;
+                        rdfs:domain :AnthropicFeature ;
+                        rdfs:range :Period ;
+                        rdfs:comment "Indicates the historical period to which the anthropic feature belongs."@en ,
+                                     "指示人为遗迹单元所属的历史时期。"@zh ;
+                        rdfs:label "feature belongs to period"@en ,
+                                   "遗迹所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#featureInvolvesTechnique
+:featureInvolvesTechnique rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :involvesTechnique ;
+                          rdfs:domain :AnthropicFeature ;
+                          rdfs:range :ProductionTechnology ;
+                          rdfs:comment "Indicates the production technology involved in an anthropic feature."@en ,
+                                       "指示人为遗迹单元涉及的生产技术。"@zh ;
+                          rdfs:label "feature involves technique"@en ,
+                                     "遗迹涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#hasAssociationWith
+:hasAssociationWith rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf crm:P69_has_association_with ;
+                    rdfs:domain :ProductionTechnology ;
+                    rdfs:range :ProductionTechnology ;
+                    rdfs:comment "描述生产技术间的关联，如制范技术与铸造技术的关联"@zh ;
+                    rdfs:label "has association with"@en ,
+                               "有关联"@zh .
+
+
+###  https://w3id.org/BCSO#hasFeature
+:hasFeature rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf crm:P46_is_composed_of ;
+            rdfs:domain :CastingSite ;
+            rdfs:range :AnthropicFeature ;
+            rdfs:comment "Indicates the anthropic features contained within a casting site."@en ,
+                         "指示铸造遗址包含的遗迹单元。"@zh ;
+            rdfs:label "has feature"@en ,
+                       "包含遗迹"@zh .
+
+
+###  https://w3id.org/BCSO#involvesTechnique
+:involvesTechnique rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf crm:P67i_is_referred_to_by ;
+                   rdfs:range :ProductionTechnology ;
+                   rdfs:comment "Indicates the production technology involved in a feature or object."@en ,
+                                "指示遗迹或遗物涉及的生产技术。"@zh ;
+                   rdfs:label "involves technique"@en ,
+                              "涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#isComposedOf
+:isComposedOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf crm:P45_consists_of ;
+              rdfs:domain :ExcavatedObject ;
+              rdfs:range :MetalMaterial ;
+              rdfs:comment "Indicates the material composition of an anthropic feature."@en ,
+                           "指示人为遗迹单元的材料构成。"@zh ;
+              rdfs:label "is composed of"@en ,
+                         "由...构成"@zh .
+
+
+###  https://w3id.org/BCSO#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf crm:P53_has_former_or_current_location ;
+             rdfs:domain :CastingSite ;
+             rdfs:range :Region ;
+             rdfs:comment "Indicates the geographical region where the site is located."@en ,
+                          "指示遗址所在的地理区域。"@zh ;
+             rdfs:label "is located in"@en ,
+                        "位于"@zh .
+
+
+###  https://w3id.org/BCSO#locatedInAdminRegion
+:locatedInAdminRegion rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf crm:P1_is_identified_by ;
+                      rdfs:domain :CastingSite ;
+                      rdfs:range :AdministrativeRegion ;
+                      rdfs:comment "Indicates the administrative region where the site is located."@en ,
+                                   "指示遗址所在的行政区划。"@zh ;
+                      rdfs:label "located in administrative region"@en ,
+                                 "位于行政区划"@zh .
+
+
+###  https://w3id.org/BCSO#objectBelongsToPeriod
+:objectBelongsToPeriod rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :belongsToPeriod ;
+                       rdfs:domain :ExcavatedObject ;
+                       rdfs:range :Period ;
+                       rdfs:comment "Indicates the historical period to which the excavated object belongs."@en ,
+                                    "指示出土遗物所属的历史时期。"@zh ;
+                       rdfs:label "object belongs to period"@en ,
+                                  "遗物所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#objectInvolvesTechnique
+:objectInvolvesTechnique rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :involvesTechnique ;
+                         rdfs:domain :ExcavatedObject ;
+                         rdfs:range :ProductionTechnology ;
+                         rdfs:comment "Indicates the production technology involved in an excavated object."@en ,
+                                      "指示出土遗物涉及的生产技术。"@zh ;
+                         rdfs:label "object involves technique"@en ,
+                                    "遗物涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#siteBelongsToPeriod
+:siteBelongsToPeriod rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :belongsToPeriod ;
+                     rdfs:domain :CastingSite ;
+                     rdfs:range :Period ;
+                     rdfs:comment "Indicates the historical period to which the casting site belongs."@en ,
+                                  "指示铸造遗址所属的历史时期。"@zh ;
+                     rdfs:label "site belongs to period"@en ,
+                                "遗址所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#wasFoundAt
+:wasFoundAt rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf crm:P53_has_former_or_current_location ;
+            rdfs:domain :ExcavatedObject ;
+            rdfs:range :Region ;
+            rdfs:comment "Indicates the location where the object was found."@en ,
+                         "指示遗物发现的地点。"@zh ;
+            rdfs:label "was found at"@en ,
+                       "出土地点是"@zh .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/BCSO#featureHasDimension
+:featureHasDimension rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :hasDimension ;
+                     rdfs:domain :AnthropicFeature ;
+                     rdfs:range rdf:langString ;
+                     rdfs:comment "人为遗迹单元具有尺寸信息（文本描述）"@zh ;
+                     rdfs:label "feature has dimension"@en ,
+                                "遗迹具有尺寸"@zh .
+
+
+###  https://w3id.org/BCSO#hasDimension
+:hasDimension rdf:type owl:DatatypeProperty ;
+              rdfs:range rdf:langString ;
+              rdfs:comment "遗物或遗迹单元具有尺寸信息（文本描述）"@zh ;
+              rdfs:label "has dimension"@en ,
+                         "具有尺寸"@zh .
+
+
+###  https://w3id.org/BCSO#hasSpatialRelation
+:hasSpatialRelation rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :AnthropicFeature ;
+                    rdfs:range rdf:langString ;
+                    rdfs:comment "遗迹单元在遗址中的空间位置关系（如位于遗址东南角、F6东侧等）"@zh ;
+                    rdfs:label "has spatial relation"@en ,
+                               "具有空间关系"@zh .
+
+
+###  https://w3id.org/BCSO#hasStratigraphicRelation
+:hasStratigraphicRelation rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :AnthropicFeature ;
+                          rdfs:range rdf:langString ;
+                          rdfs:comment "遗迹单元的地层关系（如打破H31、叠压F7等）"@zh ;
+                          rdfs:label "has stratigraphic relation"@en ,
+                                     "具有地层关系"@zh .
+
+
+###  https://w3id.org/BCSO#objectHasDimension
+:objectHasDimension rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :hasDimension ;
+                    rdfs:domain :ExcavatedObject ;
+                    rdfs:range rdf:langString ;
+                    rdfs:comment "出土遗物具有尺寸信息（文本描述）"@zh ;
+                    rdfs:label "object has dimension"@en ,
+                               "遗物具有尺寸"@zh .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing
+crm:E18_Physical_Thing rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature
+crm:E25_Human-Made_Feature rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E27_Site
+crm:E27_Site rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure
+crm:E29_Design_or_Procedure rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E41_Appellation
+crm:E41_Appellation rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E53_Place
+crm:E53_Place rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E57_Material
+crm:E57_Material rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E74_Group
+crm:E74_Group rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E7_Activity
+crm:E7_Activity rdf:type owl:Class .
+
+
+###  https://w3id.org/BCSO#AbsoluteDate
+:AbsoluteDate rdf:type owl:Class ;
+              rdfs:subClassOf :Period ;
+              rdfs:comment "An absolute date represents a specific point in time, such as a particular year."@en ,
+                           "绝对年代表示具体的时间点，如某一年。"@zh ;
+              rdfs:label "Absolute Date"@en ,
+                         "绝对年代"@zh .
+
+
+###  https://w3id.org/BCSO#AdministrativeRegion
+:AdministrativeRegion rdf:type owl:Class ;
+                      rdfs:subClassOf crm:E41_Appellation ;
+                      rdfs:comment "Administrative divisions such as provinces, cities, and counties where the site is located."@en ,
+                                   "遗址所在的行政区划，如省、市、县。"@zh ;
+                      rdfs:label "Administrative Region"@en ,
+                                 "行政区划"@zh .
+
+
+###  https://w3id.org/BCSO#Annealing
+:Annealing rdf:type owl:Class ;
+           rdfs:subClassOf :HeatTreatmentTech ;
+           rdfs:comment "A heat treatment process to reduce hardness and increase ductility of metal."@en ,
+                        "一种热处理工艺，用于降低金属硬度、增加延展性。"@zh ;
+           rdfs:label "Annealing"@en ,
+                      "退火处理"@zh .
+
+
+###  https://w3id.org/BCSO#AnthropicFeature
+:AnthropicFeature rdf:type owl:Class ;
+                  rdfs:subClassOf crm:E25_Human-Made_Feature ;
+                  rdfs:comment "Human-made features at the casting site, including workshops, kilns, pits, etc."@en ,
+                               "铸铜遗址中的人为建造遗迹，包括作坊、窑址、坑等。"@zh ;
+                  rdfs:label "Anthropic Feature"@en ,
+                             "人为遗迹单元"@zh .
+
+
+###  https://w3id.org/BCSO#Anvil
+:Anvil rdf:type owl:Class ;
+       rdfs:subClassOf :FinishingTool ;
+       rdfs:comment "A tool used for hammering and shaping metal during finishing process."@en ,
+                    "后期处理过程中用于锤打和修整金属的工具。"@zh ;
+       rdfs:label "Anvil"@en ,
+                  "砧子"@zh .
+
+
+###  https://w3id.org/BCSO#ArchaeologicalUnit
+:ArchaeologicalUnit rdf:type owl:Class ;
+                    rdfs:subClassOf crm:E74_Group ;
+                    rdfs:comment "The organization responsible for archaeological excavation."@en ,
+                                 "负责考古发掘工作的单位。"@zh ;
+                    rdfs:label "Archaeological Unit"@en ,
+                               "考古单位"@zh .
+
+
+###  https://w3id.org/BCSO#ArsenicalBronze
+:ArsenicalBronze rdf:type owl:Class ;
+                 rdfs:subClassOf :CopperBasedMaterial ;
+                 rdfs:comment "Copper alloy with arsenic as the main alloying element."@en ,
+                              "以砷为主要合金元素的铜合金。"@zh ;
+                 rdfs:label "Arsenical Bronze"@en ,
+                            "砷青铜"@zh .
+
+
+###  https://w3id.org/BCSO#AssemblyArea
+:AssemblyArea rdf:type owl:Class ;
+              rdfs:subClassOf :FinishingArea ;
+              rdfs:comment "Area where different cast parts are assembled together."@en ,
+                           "将不同铸造部件组装在一起的区域。"@zh ;
+              rdfs:label "Assembly Area"@en ,
+                         "装配区"@zh .
+
+
+###  https://w3id.org/BCSO#BellowsPipe
+:BellowsPipe rdf:type owl:Class ;
+             rdfs:subClassOf :SmeltingEquipment ;
+             rdfs:comment "Pipe used to blow air into the furnace to increase combustion temperature."@en ,
+                          "用于向炉内鼓风以提高燃烧温度的管道。"@zh ;
+             rdfs:label "Bellows Pipe"@en ,
+                        "鼓风管"@zh .
+
+
+###  https://w3id.org/BCSO#BlockMould
+:BlockMould rdf:type owl:Class ;
+            rdfs:subClassOf :OuterMould ;
+            rdfs:comment "Mould made in sections that can be assembled and disassembled."@en ,
+                         "可拆装的分块式铸范。"@zh ;
+            rdfs:label "Block Mould"@en ,
+                       "块范"@zh .
+
+
+###  https://w3id.org/BCSO#BlockMouldCasting
+:BlockMouldCasting rdf:type owl:Class ;
+                   rdfs:subClassOf :CastingTechnique ;
+                   rdfs:comment "Casting technique using block moulds made of multiple sections."@en ,
+                                "使用多块组合铸范的铸造技术。"@zh ;
+                   rdfs:label "Block Mould Casting"@en ,
+                              "块范铸造"@zh .
+
+
+###  https://w3id.org/BCSO#CarvingKnife
+:CarvingKnife rdf:type owl:Class ;
+              rdfs:subClassOf :FinishingTool ;
+              rdfs:comment "Tool used for carving fine details on cast objects."@en ,
+                           "用于在铸件上雕刻细部纹饰的工具。"@zh ;
+              rdfs:label "Carving Knife"@en ,
+                         "刻刀"@zh .
+
+
+###  https://w3id.org/BCSO#CastingEquipment
+:CastingEquipment rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionEquipment ;
+                  rdfs:comment "Equipment used in the casting process."@en ,
+                               "浇铸过程中使用的设备。"@zh ;
+                  rdfs:label "Casting Equipment"@en ,
+                             "浇铸设备"@zh .
+
+
+###  https://w3id.org/BCSO#CastingFacility
+:CastingFacility rdf:type owl:Class ;
+                 rdfs:subClassOf :AnthropicFeature ;
+                 rdfs:comment "Facilities specifically designed for casting operations."@en ,
+                              "专门用于浇铸操作的设施。"@zh ;
+                 rdfs:label "Casting Facility"@en ,
+                            "浇铸设施"@zh .
+
+
+###  https://w3id.org/BCSO#CastingPit
+:CastingPit rdf:type owl:Class ;
+            rdfs:subClassOf :Pit ;
+            rdfs:comment "Pit used for casting operations."@en ,
+                         "用于浇铸操作的坑。"@zh ;
+            rdfs:label "Casting Pit"@en ,
+                       "浇铸坑"@zh .
+
+
+###  https://w3id.org/BCSO#CastingPlatform
+:CastingPlatform rdf:type owl:Class ;
+                 rdfs:subClassOf :CastingFacility ;
+                 rdfs:comment "Platform used for casting operations."@en ,
+                              "用于浇铸操作的平台。"@zh ;
+                 rdfs:label "Casting Platform"@en ,
+                            "浇铸台"@zh .
+
+
+###  https://w3id.org/BCSO#CastingProduct
+:CastingProduct rdf:type owl:Class ;
+                rdfs:subClassOf :ExcavatedObject ;
+                rdfs:comment "The final product of the casting process."@en ,
+                             "铸造过程的最终产品。"@zh ;
+                rdfs:label "Casting Product"@en ,
+                           "铸造产品"@zh .
+
+
+###  https://w3id.org/BCSO#CastingSite
+:CastingSite rdf:type owl:Class ;
+             rdfs:subClassOf crm:E27_Site ;
+             rdfs:comment "Archaeological site where bronze casting activities took place."@en ,
+                          "进行青铜铸造活动的考古遗址。"@zh ;
+             rdfs:label "Casting Site"@en ,
+                        "铸造遗址"@zh .
+
+
+###  https://w3id.org/BCSO#CastingTechnique
+:CastingTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionTechnology ;
+                  rdfs:comment "Techniques used in the bronze casting process."@en ,
+                               "青铜铸造过程中使用的技术。"@zh ;
+                  rdfs:label "Casting Technique"@en ,
+                             "铸造技术"@zh .
+
+
+###  https://w3id.org/BCSO#CastingWorkshop
+:CastingWorkshop rdf:type owl:Class ;
+                 rdfs:subClassOf :CastingSite ;
+                 rdfs:comment "Workshop specifically for bronze casting production."@en ,
+                              "专门用于铸铜生产的作坊。"@zh ;
+                 rdfs:label "Casting Workshop"@en ,
+                            "铸铜作坊"@zh .
+
+
+###  https://w3id.org/BCSO#CharcoalSmelting
+:CharcoalSmelting rdf:type owl:Class ;
+                  rdfs:subClassOf :SmeltingTechnology ;
+                  rdfs:comment "Smelting process using charcoal as fuel and reducing agent."@en ,
+                               "使用木炭作为燃料和还原剂的熔炼工艺。"@zh ;
+                  rdfs:label "Charcoal Smelting"@en ,
+                             "木炭还原熔炼"@zh .
+
+
+###  https://w3id.org/BCSO#City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :AdministrativeRegion ;
+      rdfs:comment "City-level administrative division."@en ,
+                   "市级行政区划。"@zh ;
+      rdfs:label "City"@en ,
+                 "市"@zh .
+
+
+###  https://w3id.org/BCSO#ClayPiledFurnace
+:ClayPiledFurnace rdf:type owl:Class ;
+                  rdfs:subClassOf :SmeltingFacility ;
+                  rdfs:comment "Furnace built by piling clay, used in bronze casting."@en ,
+                               "通过堆筑草泥方式建造的熔炉，用于青铜铸造。"@zh ;
+                  rdfs:label "Clay Piled Furnace"@en ,
+                             "草泥堆筑式熔炉"@zh .
+
+
+###  https://w3id.org/BCSO#ClayPreparation
+:ClayPreparation rdf:type owl:Class ;
+                 rdfs:subClassOf :MouldMakingTech ;
+                 rdfs:comment "Process of preparing clay for mould making."@en ,
+                              "制备制范用泥料的过程。"@zh ;
+                 rdfs:label "Clay Preparation"@en ,
+                            "泥料配制"@zh .
+
+
+###  https://w3id.org/BCSO#ClayStripBuiltFurnace
+:ClayStripBuiltFurnace rdf:type owl:Class ;
+                       rdfs:subClassOf :SmeltingFacility ;
+                       rdfs:comment "Furnace built by coiling clay strips, used in bronze casting."@en ,
+                                    "通过盘筑草泥条方式建造的熔炉，用于青铜铸造。"@zh ;
+                       rdfs:label "Clay Strip-built Furnace"@en ,
+                                  "草泥条筑式熔炉"@zh .
+
+
+###  https://w3id.org/BCSO#Copper
+:Copper rdf:type owl:Class ;
+        rdfs:subClassOf :CopperBasedMaterial .
+
+
+###  https://w3id.org/BCSO#CopperBasedMaterial
+:CopperBasedMaterial rdf:type owl:Class ;
+                     rdfs:subClassOf :MetalMaterial ;
+                     rdfs:comment "Materials based on copper, including pure copper and copper alloys."@en ,
+                                  "以铜为基础的材料，包括纯铜和铜合金。"@zh ;
+                     rdfs:label "Copper Based Material"@en ,
+                                "铜基材料"@zh .
+
+
+###  https://w3id.org/BCSO#Core
+:Core rdf:type owl:Class ;
+      rdfs:subClassOf :MouldingEquipment ;
+      rdfs:comment "Inner mould used to create hollow spaces in cast objects."@en ,
+                   "用于在铸件中形成空腔的内模。"@zh ;
+      rdfs:label "Core"@en ,
+                 "泥芯"@zh .
+
+
+###  https://w3id.org/BCSO#CoreMaking
+:CoreMaking rdf:type owl:Class ;
+            rdfs:subClassOf :MouldMakingTech ;
+            rdfs:comment "Process of making cores for casting."@en ,
+                         "制作铸造用泥芯的过程。"@zh ;
+            rdfs:label "Core Making"@en ,
+                       "泥芯制作"@zh .
+
+
+###  https://w3id.org/BCSO#CoreSpine
+:CoreSpine rdf:type owl:Class ;
+           rdfs:subClassOf :Core ;
+           rdfs:comment "Metal or ceramic rod inserted in the core for reinforcement."@en ,
+                        "插入泥芯中用于加固的金属或陶瓷棒。"@zh ;
+           rdfs:label "Core Spine"@en ,
+                      "芯骨"@zh .
+
+
+###  https://w3id.org/BCSO#CoreSupport
+:CoreSupport rdf:type owl:Class ;
+             rdfs:subClassOf :Core ;
+             rdfs:comment "Support used to hold the core in place during casting."@en ,
+                          "浇铸过程中用于固定泥芯的支撑物。"@zh ;
+             rdfs:label "Core Support"@en ,
+                        "芯撑"@zh .
+
+
+###  https://w3id.org/BCSO#County
+:County rdf:type owl:Class ;
+        rdfs:subClassOf :AdministrativeRegion ;
+        rdfs:comment "County-level administrative division."@en ,
+                     "县级行政区划。"@zh ;
+        rdfs:label "County"@en ,
+                   "县/区"@zh .
+
+
+###  https://w3id.org/BCSO#Crucible
+:Crucible rdf:type owl:Class ;
+          rdfs:subClassOf :SmeltingEquipment ;
+          rdfs:comment "Container used to hold and heat metal during smelting."@en ,
+                       "熔炼过程中用于盛放和加热金属的容器。"@zh ;
+          rdfs:label "Crucible"@en ,
+                     "坩埚"@zh .
+
+
+###  https://w3id.org/BCSO#CulturalRegion
+:CulturalRegion rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                rdfs:comment "Region defined by cultural characteristics."@en ,
+                             "以文化特征划分的区域。"@zh ;
+                rdfs:label "Cultural Region"@en ,
+                           "文化区"@zh .
+
+
+###  https://w3id.org/BCSO#DefectiveProduct
+:DefectiveProduct rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionWaste ;
+                  rdfs:comment "Casting products with defects or failures."@en ,
+                               "有缺陷或铸造失败的产品。"@zh ;
+                  rdfs:label "Defective Product"@en ,
+                             "残次品"@zh .
+
+
+###  https://w3id.org/BCSO#Dynasty
+:Dynasty rdf:type owl:Class ;
+         rdfs:subClassOf :Period ;
+         rdfs:comment "Historical period defined by ruling dynasty."@en ,
+                      "以统治王朝定义的历史时期。"@zh ;
+         rdfs:label "Dynasty"@en ,
+                    "朝代"@zh .
+
+
+###  https://w3id.org/BCSO#ExcavatedObject
+:ExcavatedObject rdf:type owl:Class ;
+                 rdfs:subClassOf crm:E18_Physical_Thing ;
+                 rdfs:comment "Physical objects excavated from the archaeological site."@en ,
+                              "从考古遗址发掘出的实物。"@zh ;
+                 rdfs:label "Excavated Object"@en ,
+                            "出土遗物"@zh .
+
+
+###  https://w3id.org/BCSO#ExcavationActivity
+:ExcavationActivity rdf:type owl:Class ;
+                    rdfs:subClassOf crm:E7_Activity ;
+                    rdfs:comment "Archaeological excavation work conducted at the site."@en ,
+                                 "在遗址进行的考古发掘工作。"@zh ;
+                    rdfs:label "Excavation Activity"@en ,
+                               "发掘活动"@zh .
+
+
+###  https://w3id.org/BCSO#FinishingArea
+:FinishingArea rdf:type owl:Class ;
+               rdfs:subClassOf :AnthropicFeature ;
+               rdfs:comment "Area where cast objects are finished and polished."@en ,
+                            "对铸件进行修整和打磨的区域。"@zh ;
+               rdfs:label "Finishing Area"@en ,
+                          "后期处理区"@zh .
+
+
+###  https://w3id.org/BCSO#FinishingTool
+:FinishingTool rdf:type owl:Class ;
+               rdfs:subClassOf :ProductionEquipment ;
+               rdfs:comment "Tools used for finishing and polishing cast objects."@en ,
+                            "用于修整和打磨铸件的工具。"@zh ;
+               rdfs:label "Finishing Tool"@en ,
+                          "修整工具"@zh .
+
+
+###  https://w3id.org/BCSO#Fuel
+:Fuel rdf:type owl:Class ;
+      rdfs:subClassOf :RawMaterial ;
+      rdfs:comment "Material used to provide heat for smelting and casting."@en ,
+                   "用于为熔炼和铸造提供热量的材料。"@zh ;
+      rdfs:label "Fuel"@en ,
+                 "燃料"@zh .
+
+
+###  https://w3id.org/BCSO#GeographicUnit
+:GeographicUnit rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                rdfs:comment "Geographical unit such as mountains, rivers, plains."@en ,
+                             "地理单元，如山脉、河流、平原等。"@zh ;
+                rdfs:label "Geographic Unit"@en ,
+                           "地理单元"@zh .
+
+
+###  https://w3id.org/BCSO#GrindingStone
+:GrindingStone rdf:type owl:Class ;
+               rdfs:subClassOf :FinishingTool ;
+               rdfs:comment "Stone tool used for grinding and polishing."@en ,
+                            "用于研磨和抛光的石质工具。"@zh ;
+               rdfs:label "Grinding Stone"@en ,
+                          "磨石"@zh .
+
+
+###  https://w3id.org/BCSO#HeatTreatmentTech
+:HeatTreatmentTech rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionTechnology ;
+                   rdfs:comment "Techniques used to alter metal properties through heating."@en ,
+                                "通过加热改变金属性能的技术。"@zh ;
+                   rdfs:label "Heat Treatment Technology"@en ,
+                              "热处理技术"@zh .
+
+
+###  https://w3id.org/BCSO#InlayDecoration
+:InlayDecoration rdf:type owl:Class ;
+                 rdfs:subClassOf :SurfaceTreatmentTech ;
+                 rdfs:comment "Decoration technique involving inlaying materials into the surface."@en ,
+                              "将材料镶嵌入表面的装饰技术。"@zh ;
+                 rdfs:label "Inlay Decoration"@en ,
+                            "镶嵌装饰"@zh .
+
+
+###  https://w3id.org/BCSO#IntegralMould
+:IntegralMould rdf:type owl:Class ;
+               rdfs:subClassOf :OuterMould ;
+               rdfs:comment "Mould made as a single piece without sections."@en ,
+                            "整体制作、不分块的铸范。"@zh ;
+               rdfs:label "Integral Mould"@en ,
+                          "整范"@zh .
+
+
+###  https://w3id.org/BCSO#LeadBronze
+:LeadBronze rdf:type owl:Class ;
+            rdfs:subClassOf :CopperBasedMaterial ;
+            rdfs:comment "Copper alloy with lead as the main alloying element."@en ,
+                         "以铅为主要合金元素的铜合金。"@zh ;
+            rdfs:label "Lead Bronze"@en ,
+                       "铅青铜"@zh .
+
+
+###  https://w3id.org/BCSO#LeadMaterial
+:LeadMaterial rdf:type owl:Class ;
+              rdfs:subClassOf :MetalMaterial ;
+              rdfs:comment "Lead metal used as raw material."@en ,
+                           "用作原料的铅金属。"@zh ;
+              rdfs:label "Lead Material"@en ,
+                         "铅料"@zh .
+
+
+###  https://w3id.org/BCSO#LostWaxCasting
+:LostWaxCasting rdf:type owl:Class ;
+                rdfs:subClassOf :CastingTechnique ;
+                rdfs:comment "Casting technique using wax models that are melted away."@en ,
+                             "使用可熔化蜡模的铸造技术。"@zh ;
+                rdfs:label "Lost Wax Casting"@en ,
+                           "失蜡法"@zh .
+
+
+###  https://w3id.org/BCSO#MasterPattern
+:MasterPattern rdf:type owl:Class ;
+               rdfs:subClassOf :MouldingEquipment ;
+               rdfs:comment "Original pattern used to make moulds."@en ,
+                            "用于制作铸范的原始模型。"@zh ;
+               rdfs:label "Master Pattern"@en ,
+                          "母模"@zh .
+
+
+###  https://w3id.org/BCSO#MetalMaterial
+:MetalMaterial rdf:type owl:Class ;
+               rdfs:subClassOf crm:E57_Material ,
+                               :RawMaterial ;
+               rdfs:comment "Metal materials used in casting production."@en ,
+                            "铸造生产中使用的金属材料。"@zh ;
+               rdfs:label "Metal Material"@en ,
+                          "金属料"@zh ,
+                          "金属材料"@zh .
+
+
+###  https://w3id.org/BCSO#MouldAssembly
+:MouldAssembly rdf:type owl:Class ;
+               rdfs:subClassOf :MouldingEquipment ;
+               rdfs:comment "Assembly of outer mould and core for casting."@en ,
+                            "用于铸造的外范与泥芯的组合。"@zh ;
+               rdfs:label "Mould Assembly"@en ,
+                          "范芯组合"@zh .
+
+
+###  https://w3id.org/BCSO#MouldKiln
+:MouldKiln rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/BCSO/MouldMakingFacility> ;
+           rdfs:comment "Kiln used for drying and firing moulds."@en ,
+                        "用于干燥和焙烧铸范的窑。"@zh ;
+           rdfs:label "Mould Kiln"@en ,
+                      "范窑"@zh .
+
+
+###  https://w3id.org/BCSO#MouldMakingSurface
+:MouldMakingSurface rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/BCSO/MouldMakingFacility> ;
+                    rdfs:comment "Work surface used for making moulds."@en ,
+                                 "用于制作铸范的工作面。"@zh ;
+                    rdfs:label "Mould Making Surface"@en ,
+                               "制范工作面"@zh .
+
+
+###  https://w3id.org/BCSO#MouldMakingTech
+:MouldMakingTech rdf:type owl:Class ;
+                 rdfs:subClassOf :ProductionTechnology ;
+                 rdfs:comment "Techniques used in mould making."@en ,
+                              "制范过程中使用的技术。"@zh ;
+                 rdfs:label "Mould Making Technology"@en ,
+                            "制范技术"@zh .
+
+
+###  https://w3id.org/BCSO#MouldingEquipment
+:MouldingEquipment rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionEquipment ;
+                   rdfs:comment "Equipment used in the mould making process."@en ,
+                                "制范过程中使用的设备。"@zh ;
+                   rdfs:label "Moulding Equipment"@en ,
+                              "模具设备"@zh .
+
+
+###  https://w3id.org/BCSO#OneTimeCasting
+:OneTimeCasting rdf:type owl:Class ;
+                rdfs:subClassOf :BlockMouldCasting ;
+                rdfs:comment "Casting technique where the object is cast in one piece."@en ,
+                             "一次性整体浇铸的技术。"@zh ;
+                rdfs:label "One-time Casting"@en ,
+                           "浑铸法"@zh .
+
+
+###  https://w3id.org/BCSO#OuterMould
+:OuterMould rdf:type owl:Class ;
+            rdfs:subClassOf :MouldingEquipment ;
+            rdfs:comment "Outer mould that forms the exterior shape of the cast object."@en ,
+                         "形成铸件外形的外范。"@zh ;
+            rdfs:label "Outer Mould"@en ,
+                       "外范"@zh .
+
+
+###  https://w3id.org/BCSO#OxidativeRefining
+:OxidativeRefining rdf:type owl:Class ;
+                   rdfs:subClassOf :SmeltingTechnology ;
+                   rdfs:comment "Refining process using oxidation to remove impurities."@en ,
+                                "利用氧化去除杂质的精炼工艺。"@zh ;
+                   rdfs:label "Oxidative Refining"@en ,
+                              "氧化精炼"@zh .
+
+
+###  https://w3id.org/BCSO#PatternMoulding
+:PatternMoulding rdf:type owl:Class ;
+                 rdfs:subClassOf :MouldMakingTech ;
+                 rdfs:comment "Process of making moulds from patterns."@en ,
+                              "从模型制作铸范的过程。"@zh ;
+                 rdfs:label "Pattern Moulding"@en ,
+                            "翻范技术"@zh .
+
+
+###  https://w3id.org/BCSO#Period
+:Period rdf:type owl:Class ;
+        rdfs:subClassOf crm:E41_Appellation ;
+        rdfs:comment "Historical period or phase."@en ,
+                     "历史时期或阶段。"@zh ;
+        rdfs:label "Period"@en ,
+                   "时代"@zh .
+
+
+###  https://w3id.org/BCSO#Phase
+:Phase rdf:type owl:Class ;
+       rdfs:subClassOf :Period ;
+       rdfs:comment "Subdivision of a period for more precise dating."@en ,
+                    "时期的细分，用于更精确的年代划分。"@zh ;
+       rdfs:label "Phase"@en ,
+                  "分期"@zh .
+
+
+###  https://w3id.org/BCSO#Pit
+:Pit rdf:type owl:Class ;
+     rdfs:subClassOf :AnthropicFeature ;
+     rdfs:comment "Various types of pits at the casting site."@en ,
+                  "铸铜遗址中的各类坑穴。"@zh ;
+     rdfs:label "Pit"@en ,
+                "坑"@zh .
+
+
+###  https://w3id.org/BCSO#Polishing
+:Polishing rdf:type owl:Class ;
+           rdfs:subClassOf :SurfaceTreatmentTech ;
+           rdfs:comment "Process of smoothing and shining the surface."@en ,
+                        "使表面光滑发亮的过程。"@zh ;
+           rdfs:label "Polishing"@en ,
+                      "打磨抛光"@zh .
+
+
+###  https://w3id.org/BCSO#PolishingSurface
+:PolishingSurface rdf:type owl:Class ;
+                  rdfs:subClassOf :FinishingArea ;
+                  rdfs:comment "Work surface used for polishing cast objects."@en ,
+                               "用于打磨铸件的工作面。"@zh ;
+                  rdfs:label "Polishing Surface"@en ,
+                             "打磨工作面"@zh .
+
+
+###  https://w3id.org/BCSO#PouringBasin
+:PouringBasin rdf:type owl:Class ;
+              rdfs:subClassOf :CastingEquipment ;
+              rdfs:comment "Basin that receives molten metal and directs it into the mould."@en ,
+                           "接收铜液并将其导入铸范的容器。"@zh ;
+              rdfs:label "Pouring Basin"@en ,
+                         "浇口杯"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionEquipment
+:ProductionEquipment rdf:type owl:Class ;
+                     rdfs:subClassOf :ExcavatedObject ;
+                     rdfs:comment "Equipment used in the production process."@en ,
+                                  "生产过程中使用的设备。"@zh ;
+                     rdfs:label "Production Equipment"@en ,
+                                "生产设备"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionTechnology
+:ProductionTechnology rdf:type owl:Class ;
+                      rdfs:subClassOf crm:E29_Design_or_Procedure ;
+                      rdfs:comment "Technologies used in the casting production chain."@en ,
+                                   "铸造生产链中使用的技术。"@zh ;
+                      rdfs:label "Production Technology"@en ,
+                                 "生产技术"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionWaste
+:ProductionWaste rdf:type owl:Class ;
+                 rdfs:subClassOf :ExcavatedObject ;
+                 rdfs:comment "Waste materials generated during production."@en ,
+                              "生产过程中产生的废弃物。"@zh ;
+                 rdfs:label "Production Waste"@en ,
+                            "生产废弃物"@zh .
+
+
+###  https://w3id.org/BCSO#Province
+:Province rdf:type owl:Class ;
+          rdfs:subClassOf :AdministrativeRegion ;
+          rdfs:comment "Province-level administrative division."@en ,
+                       "省级行政区划。"@zh ;
+          rdfs:label "Province"@en ,
+                     "省"@zh .
+
+
+###  https://w3id.org/BCSO#Quenching
+:Quenching rdf:type owl:Class ;
+           rdfs:subClassOf :HeatTreatmentTech ;
+           rdfs:comment "Heat treatment process to harden metal by rapid cooling."@en ,
+                        "通过快速冷却使金属硬化的热处理工艺。"@zh ;
+           rdfs:label "Quenching"@en ,
+                      "淬火处理"@zh .
+
+
+###  https://w3id.org/BCSO#RawMaterial
+:RawMaterial rdf:type owl:Class ;
+             rdfs:subClassOf :ExcavatedObject ;
+             rdfs:comment "Raw materials used in casting production."@en ,
+                          "铸造生产中使用的原材料。"@zh ;
+             rdfs:label "Raw Material"@en ,
+                        "原材料"@zh .
+
+
+###  https://w3id.org/BCSO#Region
+:Region rdf:type owl:Class ;
+        rdfs:subClassOf crm:E53_Place ;
+        rdfs:comment "Geographical region where the site is located."@en ,
+                     "遗址所在的地理区域。"@zh ;
+        rdfs:label "Region"@en ,
+                   "地区"@zh .
+
+
+###  https://w3id.org/BCSO#RitualPit
+:RitualPit rdf:type owl:Class ;
+           rdfs:subClassOf :Pit ;
+           rdfs:comment "Pit used for ritual purposes."@en ,
+                        "用于祭祀的坑穴。"@zh ;
+           rdfs:label "Ritual Pit"@en ,
+                      "祭祀坑"@zh .
+
+
+###  https://w3id.org/BCSO#SeparateCasting
+:SeparateCasting rdf:type owl:Class ;
+                 rdfs:subClassOf :BlockMouldCasting ;
+                 rdfs:comment "Casting technique where parts are cast separately and then assembled."@en ,
+                              "各部件分别铸造后再组装的技术。"@zh ;
+                 rdfs:label "Separate Casting"@en ,
+                            "分铸法"@zh .
+
+
+###  https://w3id.org/BCSO#SiteCluster
+:SiteCluster rdf:type owl:Class ;
+             rdfs:subClassOf :Region ;
+             rdfs:comment "Cluster of related archaeological sites."@en ,
+                          "相关考古遗址的集群。"@zh ;
+             rdfs:label "Site Cluster"@en ,
+                        "遗址群"@zh .
+
+
+###  https://w3id.org/BCSO#Slag
+:Slag rdf:type owl:Class ;
+      rdfs:subClassOf :ProductionWaste ;
+      rdfs:comment "Waste material separated from metal during smelting."@en ,
+                   "熔炼过程中从金属中分离出的废弃物。"@zh ;
+      rdfs:label "Slag"@en ,
+                 "炉渣"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingCastingSite
+:SmeltingCastingSite rdf:type owl:Class ;
+                     rdfs:subClassOf :CastingSite ;
+                     rdfs:comment "Site where both smelting and casting took place."@en ,
+                                  "同时进行冶炼和铸造的遗址。"@zh ;
+                     rdfs:label "Smelting-Casting Site"@en ,
+                                "冶炼铸造遗址"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingEquipment
+:SmeltingEquipment rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionEquipment ;
+                   rdfs:comment "Equipment used in the smelting process."@en ,
+                                "熔炼过程中使用的设备。"@zh ;
+                   rdfs:label "Smelting Equipment"@en ,
+                              "熔炼设备"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingFacility
+:SmeltingFacility rdf:type owl:Class ;
+                  rdfs:subClassOf :AnthropicFeature ;
+                  rdfs:comment "Facilities specifically designed for smelting operations."@en ,
+                               "专门用于熔炼操作的设施。"@zh ;
+                  rdfs:label "Smelting Facility"@en ,
+                             "熔炼设施"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingTechnology
+:SmeltingTechnology rdf:type owl:Class ;
+                    rdfs:subClassOf :ProductionTechnology ;
+                    rdfs:comment "Techniques used in metal smelting."@en ,
+                                 "金属熔炼中使用的技术。"@zh ;
+                    rdfs:label "Smelting Technology"@en ,
+                               "熔炼技术"@zh .
+
+
+###  https://w3id.org/BCSO#SpruePipe
+:SpruePipe rdf:type owl:Class ;
+           rdfs:subClassOf :CastingEquipment ;
+           rdfs:comment "Pipe that channels molten metal into the mould cavity."@en ,
+                        "将铜液导入铸范型腔的管道。"@zh ;
+           rdfs:label "Sprue Pipe"@en ,
+                      "浇道管"@zh .
+
+
+###  https://w3id.org/BCSO#StackCasting
+:StackCasting rdf:type owl:Class ;
+              rdfs:subClassOf :CastingTechnique ;
+              rdfs:comment "Casting technique where multiple objects are cast simultaneously in a stack."@en ,
+                           "多个物件叠在一起同时浇铸的技术。"@zh ;
+              rdfs:label "Stack Casting"@en ,
+                         "叠铸法"@zh .
+
+
+###  https://w3id.org/BCSO#StoragePit
+:StoragePit rdf:type owl:Class ;
+            rdfs:subClassOf :Pit ;
+            rdfs:comment "Pit used for storing items (cellar)."@en ,
+                         "用于存储物品的坑穴（窖穴）。"@zh ;
+            rdfs:label "Storage Pit"@en ,
+                       "存储坑/窖穴"@zh .
+
+
+###  https://w3id.org/BCSO#SurfaceTreatmentTech
+:SurfaceTreatmentTech rdf:type owl:Class ;
+                      rdfs:subClassOf :ProductionTechnology ;
+                      rdfs:comment "Techniques used to treat the surface of cast objects."@en ,
+                                   "用于处理铸件表面的技术。"@zh ;
+                      rdfs:label "Surface Treatment Technology"@en ,
+                                 "表面处理技术"@zh .
+
+
+###  https://w3id.org/BCSO#TinBronze
+:TinBronze rdf:type owl:Class ;
+           rdfs:subClassOf :CopperBasedMaterial ;
+           rdfs:comment "Copper alloy with tin as the main alloying element."@en ,
+                        "以锡为主要合金元素的铜合金。"@zh ;
+           rdfs:label "Tin Bronze"@en ,
+                      "锡青铜"@zh .
+
+
+###  https://w3id.org/BCSO#TinLeadBronze
+:TinLeadBronze rdf:type owl:Class ;
+               rdfs:subClassOf :CopperBasedMaterial ;
+               rdfs:comment "Copper alloy with both tin and lead as alloying elements."@en ,
+                            "以锡和铅为合金元素的铜合金。"@zh ;
+               rdfs:label "Tin-Lead Bronze"@en ,
+                          "铅锡青铜"@zh .
+
+
+###  https://w3id.org/BCSO#TinMaterial
+:TinMaterial rdf:type owl:Class ;
+             rdfs:subClassOf :MetalMaterial ;
+             rdfs:comment "Tin metal used as raw material."@en ,
+                          "用作原料的锡金属。"@zh ;
+             rdfs:label "Tin Material"@en ,
+                        "锡料"@zh .
+
+
+###  https://w3id.org/BCSO#WastePit
+:WastePit rdf:type owl:Class ;
+          rdfs:subClassOf :Pit ;
+          rdfs:comment "Pit used for dumping waste materials."@en ,
+                       "用于倾倒废弃物的坑。"@zh ;
+          rdfs:label "Waste Pit"@en ,
+                     "垃圾坑"@zh .
+
+
+###  https://w3id.org/BCSO/MouldMakingFacility
+<https://w3id.org/BCSO/MouldMakingFacility> rdf:type owl:Class ;
+                                            rdfs:subClassOf :AnthropicFeature ;
+                                            rdfs:label "Mould Making Facility"@en ,
+                                                       "制范设施"@zh .
+
+
+###  https://w3id.org/BCSO/MultifunctionalWorkshopArea
+<https://w3id.org/BCSO/MultifunctionalWorkshopArea> rdf:type owl:Class ;
+                                                    rdfs:subClassOf :AnthropicFeature ;
+                                                    rdfs:comment "A multifunctional workshop area"@en ,
+                                                                 "具有多功能的作坊区域"@zh ;
+                                                    rdfs:label "Multifunctional Workshop Area"@en ,
+                                                               "多功能作坊区"@zh .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/BCSO#CASSAnyangTeam
+:CASSAnyangTeam rdf:type owl:NamedIndividual ,
+                         :ArchaeologicalUnit ;
+                rdfs:label "中国社会科学院考古研究所安阳工作队"@zh .
+
+
+###  https://w3id.org/BCSO#Copper
+:Copper rdf:type owl:NamedIndividual ,
+                 :Copper .
+
+
+###  https://w3id.org/BCSO#JointArchaeologicalTeam
+:JointArchaeologicalTeam rdf:type owl:NamedIndividual ,
+                                  :ArchaeologicalUnit ;
+                         rdfs:label "联合考古队"@zh .
+
+
+###  https://w3id.org/BCSO#ShangDynasty
+:ShangDynasty rdf:type owl:NamedIndividual ,
+                       :Dynasty ;
+              rdfs:label "Shang Dynasty"@en ,
+                         "商代"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_BlockMouldCasting
+:Tech_BlockMouldCasting rdf:type owl:NamedIndividual ,
+                                 :CastingTechnique ;
+                        rdfs:label "Block Mould Casting Technology"@en ,
+                                   "块范铸造技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_ClayPreparation
+:Tech_ClayPreparation rdf:type owl:NamedIndividual ,
+                               :MouldMakingTech ;
+                      rdfs:label "Clay Preparation Technology"@en ,
+                                 "范土备料技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_CopperSmelting
+:Tech_CopperSmelting rdf:type owl:NamedIndividual ,
+                              :SmeltingTechnology ;
+                     rdfs:label "Copper Smelting Technology"@en ,
+                                "铜料熔炼技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_MouldDrying
+:Tech_MouldDrying rdf:type owl:NamedIndividual ,
+                           :MouldMakingTech ;
+                  rdfs:label "Mould Drying Technology"@en ,
+                             "陶范阴干技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_MouldKiln
+:Tech_MouldKiln rdf:type owl:NamedIndividual ,
+                         :MouldMakingTech ;
+                rdfs:label "Mould Kiln Technology"@en ,
+                           "烘范技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_MouldMaking
+:Tech_MouldMaking rdf:type owl:NamedIndividual ,
+                           :MouldMakingTech ;
+                  rdfs:label "Mould Making Technology"@en ,
+                             "制范技术"@zh .
+
+
+###  https://w3id.org/BCSO#Tech_Polishing
+:Tech_Polishing rdf:type owl:NamedIndividual ,
+                         :SurfaceTreatmentTech ;
+                rdfs:label "Polishing Technology"@en ,
+                           "打磨抛光技术"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2000AGH13
+:Xiaomintun2000AGH13 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     rdfs:label "2000AGH13"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2000AGH29
+:Xiaomintun2000AGH29 rdf:type owl:NamedIndividual ,
+                              :StoragePit ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     :hasDimension "南北长13米,东西宽10-12米，深2.2-3.8米"@zh ;
+                     :hasStratigraphicRelation "开口于扰土层下,局部被F7叠压,被M5008_M5017_M5055打破"@zh ;
+                     rdfs:comment "灰坑（含窖穴，取土坑后用作垃圾坑）"@zh ;
+                     rdfs:label "2000AGH29"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2000AGH31
+:Xiaomintun2000AGH31 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     :hasDimension "直径3米"@zh ;
+                     :hasStratigraphicRelation "开口于扰土层下"@zh ;
+                     rdfs:comment "灰坑（原可能为水井，废弃后填垃圾）"@zh ;
+                     rdfs:label "2000AGH31"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2000AGH6
+:Xiaomintun2000AGH6 rdf:type owl:NamedIndividual ,
+                             :WastePit ;
+                    :belongsToPeriod :YinxuPeriodIV ;
+                    rdfs:label "2000AGH6"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGF6
+:Xiaomintun2001AGF6 rdf:type owl:NamedIndividual ,
+                             :SmeltingFacility ,
+                             <https://w3id.org/BCSO/MouldMakingFacility> ;
+                    :belongsToPeriod :YinxuPeriodIII ;
+                    :hasDimension "南北宽约10米,东西长16.5米以上，厚约0.55米"@zh ;
+                    :hasStratigraphicRelation "清去扰土层后暴露,距地表约0.3米,被F5和F7叠压,被H12_H14_多座墓葬打破,F6打破H31_H32和M5441"@zh ;
+                    rdfs:comment "中部发现窑址Y1，窑北约3米处有熔炉残块堆积L1，活动面上发现三块未使用的精细陶范，垫土内有瓮棺葬3座W3-W5"@zh ;
+                    rdfs:label "2001AGF6 房址（铸铜作坊区房基）"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH1
+:Xiaomintun2001AGH1 rdf:type owl:NamedIndividual ,
+                             :WastePit ;
+                    :belongsToPeriod :YinxuPeriodIV ;
+                    rdfs:label "2001AGH1"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH19
+:Xiaomintun2001AGH19 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIII ;
+                     rdfs:label "2001AGH19"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH2
+:Xiaomintun2001AGH2 rdf:type owl:NamedIndividual ,
+                             :WastePit ;
+                    :belongsToPeriod :YinxuPeriodIV ;
+                    rdfs:label "2001AGH2"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH23
+:Xiaomintun2001AGH23 rdf:type owl:NamedIndividual ,
+                              :StoragePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     :hasDimension "椭圆形，有东、南两个甬道，东西长13.95米,南北长15米_含甬道_,东道共31级台阶,南道长9.7米"@zh ;
+                     :hasStratigraphicRelation "开口于扰土层下,被H6_H25_H29_M5425打破,打破H20_H24_F7_F8_M5437和生土"@zh ;
+                     rdfs:label "2001AGH23 灰坑（存储物品的窖穴）"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH24
+:Xiaomintun2001AGH24 rdf:type owl:NamedIndividual ,
+                              :Pit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     rdfs:label "2001AGH24"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH25
+:Xiaomintun2001AGH25 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     rdfs:label "2001AGH25"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH27
+:Xiaomintun2001AGH27 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIII ;
+                     :hasDimension "椭圆形，长轴10.25米,短轴残长6.4米，底距地表4.8米"@zh ;
+                     :hasStratigraphicRelation "叠压在F7之下,被H6_H23_M5333打破,H27打破M5139"@zh ;
+                     rdfs:label "2001AGH27 灰坑（原应为取土坑，后填入垃圾）"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH28
+:Xiaomintun2001AGH28 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     rdfs:label "2001AGH28"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGH30
+:Xiaomintun2001AGH30 rdf:type owl:NamedIndividual ,
+                              :WastePit ;
+                     :belongsToPeriod :YinxuPeriodIV ;
+                     rdfs:label "2001AGH30"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2001AGT2铜绿锈面
+:Xiaomintun2001AGT2铜绿锈面 rdf:type owl:NamedIndividual ,
+                                 :PolishingSurface ;
+                        :belongsToPeriod :YinxuPeriodIII ;
+                        :hasDimension "残存近方形，残存约1平方米，厚约0.5厘米"@zh ;
+                        :hasStratigraphicRelation "属于F5的遗存,大部分被当代房址破坏"@zh ;
+                        rdfs:label "2001AGT2铜绿锈面（铸铜打磨修整作业面）"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXST1802_H265
+:Xiaomintun2003AXST1802_H265 rdf:type owl:NamedIndividual ,
+                                      :AnthropicFeature ;
+                             :belongsToPeriod :YinxuPeriodIII ;
+                             :hasDimension "坑口东西长622厘米,南北宽525厘米;坑底东西长482厘米,南北宽422厘米"@zh ;
+                             :hasStratigraphicRelation "打破生土,被F44叠压,被H256和F39打破,北距F43仅数十米"@zh ;
+                             rdfs:label "2003AXST1802-H265"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXST1807_F43
+:Xiaomintun2003AXST1807_F43 rdf:type owl:NamedIndividual ,
+                                     :CastingWorkshop ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :hasDimension "南北最长354厘米,东西最宽320厘米"@zh ;
+                            :hasStratigraphicRelation "开口于扰土层下,西北角被近代坑和殷墟四期墓葬M423打破"@zh ;
+                            rdfs:label "2003AXST1807-F43"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXST2411_F54
+:Xiaomintun2003AXST2411_F54 rdf:type owl:NamedIndividual ,
+                                     :CastingWorkshop ;
+                            :belongsToPeriod :YinxuPeriodIII ;
+                            :hasDimension "直径约290厘米"@zh ;
+                            :hasStratigraphicRelation "开口于扰土层下,打破商代灰沟G10,北部被近代坑和商代灰坑H414打破"@zh ;
+                            rdfs:label "2003AXST2411-F54"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXST2812_H453
+:Xiaomintun2003AXST2812_H453 rdf:type owl:NamedIndividual ,
+                                      :AnthropicFeature ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :hasDimension "东西长约210厘米,南北宽166~172厘米"@zh ;
+                             :hasStratigraphicRelation "开口于T2812第2层_扰土层_下,直接打破生土,口部被晚期沟和商代墓葬M775打破"@zh ;
+                             rdfs:label "2003AXST2812-H453"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXST_H254
+:Xiaomintun2003AXST_H254 rdf:type owl:NamedIndividual ,
+                                  :AnthropicFeature ;
+                         :belongsToPeriod :YinxuPeriodIV ;
+                         :hasDimension "直径335~510厘米"@zh ;
+                         :hasStratigraphicRelation "跨2003AXST1906_T1907_T2006和T2007这4个探方,开口于第7层_商代文化层_下,打破第8层及生土,被H261打破"@zh ;
+                         rdfs:label "2003AXST-H254"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H214
+:Xiaomintun2003AXS_H214 rdf:type owl:NamedIndividual ,
+                                 :WastePit ;
+                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                        rdfs:label "2003AXS_H214"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H24
+:Xiaomintun2003AXS_H24 rdf:type owl:NamedIndividual ,
+                                :WastePit ;
+                       :belongsToPeriod :YinxuPeriodIII_IV ;
+                       rdfs:label "2003AXS_H24"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H315第4层
+:Xiaomintun2003AXS_H315第4层 rdf:type owl:NamedIndividual ,
+                                    :WastePit ;
+                           :belongsToPeriod :YinxuPeriodIII_IV ;
+                           rdfs:label "2003AXS_H315第4层"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H420
+:Xiaomintun2003AXS_H420 rdf:type owl:NamedIndividual ,
+                                 :WastePit ;
+                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                        rdfs:label "2003AXS_H420"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H481第3层
+:Xiaomintun2003AXS_H481第3层 rdf:type owl:NamedIndividual ,
+                                    :WastePit ;
+                           :belongsToPeriod :YinxuPeriodIII_IV ;
+                           rdfs:label "2003AXS_H481第3层"@zh .
+
+
+###  https://w3id.org/BCSO#Xiaomintun2003AXS_H683
+:Xiaomintun2003AXS_H683 rdf:type owl:NamedIndividual ,
+                                 :WastePit ;
+                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                        rdfs:label "2003AXS_H683"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunExcavation2000
+:XiaomintunExcavation2000 rdf:type owl:NamedIndividual ,
+                                   :ExcavationActivity ;
+                          :carriedOutBy :CASSAnyangTeam ;
+                          :conductedAtSite :XiaomintunSite ;
+                          rdfs:label "2000~2001年孝民屯东南地发掘"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunExcavation2003
+:XiaomintunExcavation2003 rdf:type owl:NamedIndividual ,
+                                   :ExcavationActivity ;
+                          :carriedOutBy :JointArchaeologicalTeam ;
+                          :conductedAtSite :XiaomintunSite ;
+                          rdfs:label "2003~2004年孝民屯大规模抢救性发掘"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH13_1
+:XiaomintunObj_2000AGH13_1 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2000AGH13 ;
+                           :involvesTechnique :Tech_MouldMaking ;
+                           :hasDimension "直径10.2-11厘米,厚约3.3厘米"@zh ;
+                           rdfs:label "2000AGH13:1 兽首范_卣提梁/尊肩部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH29_3
+:XiaomintunObj_2000AGH29_3 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2000AGH29 ;
+                           :involvesTechnique :Tech_MouldMaking ;
+                           :hasDimension "残高9.8厘米,厚约3.5厘米"@zh ;
+                           rdfs:label "2000AGH29:3 觚范_上部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH29_5
+:XiaomintunObj_2000AGH29_5 rdf:type owl:NamedIndividual ,
+                                    :FinishingTool ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2000AGH29 ;
+                           :involvesTechnique :Tech_Polishing ;
+                           :isComposedOf :Copper ;
+                           :hasDimension "残长12.2厘米"@zh ;
+                           rdfs:label "2000AGH29:5 铜刻针"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_11
+:XiaomintunObj_2000AGH31_11 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "残高7.5厘米,厚约3厘米"@zh ;
+                            rdfs:label "2000AGH31:11 簋范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_1222
+:XiaomintunObj_2000AGH31_1222 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "H31:12残高16.2厘米,残宽10-12厘米,厚约4.4厘米;H31:22残高10.2厘米,残宽8.1厘米,厚约3.4厘米"@zh ;
+                              rdfs:label "2000AGH31:12_22 簋耳及垂珥范_两扇扣合_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_13
+:XiaomintunObj_2000AGH31_13 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "高5.5厘米,厚约3.2厘米"@zh ;
+                            rdfs:label "2000AGH31:13 卣盖钮范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_1415
+:XiaomintunObj_2000AGH31_1415 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "H31:14残高8.4厘米,厚约3.5厘米;H31:15残高6.5厘米,厚约3厘米"@zh ;
+                              rdfs:label "2000AGH31:14_15 卣腹部范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_2021
+:XiaomintunObj_2000AGH31_2021 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "H31:20长16厘米,宽3.6-7.1厘米,厚2.2-5厘米;H31:21高11厘米,残长7.2厘米,厚2.6-4厘米"@zh ;
+                              rdfs:label "2000AGH31:20_21 兽首范_簋/斝錾部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_23
+:XiaomintunObj_2000AGH31_23 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "厚约4.2厘米"@zh ;
+                            rdfs:label "2000AGH31:23 觥盖范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_25
+:XiaomintunObj_2000AGH31_25 rdf:type owl:NamedIndividual ,
+                                     :MasterPattern ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_MouldMaking ;
+                            :hasDimension "残高6.5厘米,直径5.5厘米"@zh ;
+                            rdfs:label "2000AGH31:25 不明模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_26
+:XiaomintunObj_2000AGH31_26 rdf:type owl:NamedIndividual ,
+                                     :Core ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_MouldMaking ;
+                            :hasDimension "残高5.2厘米,残长6厘米,残宽5.9厘米"@zh ;
+                            rdfs:label "2000AGH31:26 方形容器芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_3
+:XiaomintunObj_2000AGH31_3 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2000AGH31 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "残高11.5厘米,厚约4.5厘米"@zh ;
+                           rdfs:label "2000AGH31:3 圆鼎范_腹部+足部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_38
+:XiaomintunObj_2000AGH31_38 rdf:type owl:NamedIndividual ,
+                                     :ClayStripBuiltFurnace ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_CopperSmelting ;
+                            :hasDimension "厚约42毫米,直径因变形不详"@zh ;
+                            rdfs:label "2000AGH31:38 草泥条筑式熔炉_还原带部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_56
+:XiaomintunObj_2000AGH31_56 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "H31:5残高9厘米,残宽24.8厘米,厚约3.8厘米;H31:6残高8.4厘米,残宽18厘米,厚约4.2厘米"@zh ;
+                            rdfs:label "2000AGH31:5_6 器座范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH31_78
+:XiaomintunObj_2000AGH31_78 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIV ;
+                            :excavatedFrom :Xiaomintun2000AGH31 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "H31:7残高11.5厘米,厚约3.2厘米;H31:8残高6厘米,厚约3厘米"@zh ;
+                            rdfs:label "2000AGH31:7_8 簋范_两扇扣合_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH6_2
+:XiaomintunObj_2000AGH6_2 rdf:type owl:NamedIndividual ,
+                                   :FinishingTool ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2000AGH6 ;
+                          :involvesTechnique :Tech_Polishing ;
+                          :isComposedOf :Copper ;
+                          :hasDimension "通长17厘米,柄长6.5厘米"@zh ;
+                          rdfs:label "2000AGH6:2 铜削"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH6_3
+:XiaomintunObj_2000AGH6_3 rdf:type owl:NamedIndividual ,
+                                   :FinishingTool ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2000AGH6 ;
+                          :involvesTechnique :Tech_Polishing ;
+                          :isComposedOf :Copper ;
+                          :hasDimension "长16.3厘米"@zh ;
+                          rdfs:label "2000AGH6:3 铜刻针"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGH6_4
+:XiaomintunObj_2000AGH6_4 rdf:type owl:NamedIndividual ,
+                                   :Crucible ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2000AGH6 ;
+                          :involvesTechnique :Tech_CopperSmelting ;
+                          :hasDimension "弦长75毫米,弦高4毫米,直径约355毫米,厚22毫米"@zh ;
+                          rdfs:label "2000AGH6:4 夹砂炉_坩埚_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGM5049Fill_1
+:XiaomintunObj_2000AGM5049Fill_1 rdf:type owl:NamedIndividual ,
+                                          :OuterMould ;
+                                 :belongsToPeriod :YinxuPeriodIV ;
+                                 :excavatedFrom <https://w3id.org/BCSO/2000AGM5049> ;
+                                 :involvesTechnique :Tech_MouldMaking ;
+                                 :hasDimension "残长5厘米,残宽4.9厘米,厚约2.3厘米"@zh ;
+                                 rdfs:label "2000AGM5049填土:1 数字范_易卦范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_2_1
+:XiaomintunObj_2000AGT10_2_1 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT102> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "残高8厘米,厚约2.8厘米"@zh ;
+                             rdfs:label "2000AGT102:1 簋范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_2_4
+:XiaomintunObj_2000AGT10_2_4 rdf:type owl:NamedIndividual ,
+                                      :MasterPattern ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT102> ;
+                             :involvesTechnique :Tech_MouldMaking ;
+                             :hasDimension "残高6.5厘米"@zh ;
+                             rdfs:label "2000AGT102:4 斝模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_2_6
+:XiaomintunObj_2000AGT10_2_6 rdf:type owl:NamedIndividual ,
+                                      :Crucible ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom :Xiaomintun2000AGH13 ;
+                             :involvesTechnique :Tech_CopperSmelting ;
+                             :hasDimension "弦长70毫米,弦高4毫米,直径约310毫米,厚28毫米"@zh ;
+                             rdfs:label "2000AGT102:6 夹砂炉_坩埚_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_3_1
+:XiaomintunObj_2000AGT10_3_1 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT103> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "残高16.5厘米,残宽17厘米,厚约5厘米"@zh ;
+                             rdfs:label "2000AGT103:1 方鼎范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_3_3
+:XiaomintunObj_2000AGT10_3_3 rdf:type owl:NamedIndividual ,
+                                      :MasterPattern ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT103> ;
+                             :involvesTechnique :Tech_MouldMaking ;
+                             :hasDimension "高5.3厘米,泡径5.5厘米"@zh ;
+                             rdfs:label "2000AGT103:3 泡模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_3_5
+:XiaomintunObj_2000AGT10_3_5 rdf:type owl:NamedIndividual ,
+                                      :ClayStripBuiltFurnace ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom :Xiaomintun2000AGH31 ;
+                             :involvesTechnique :Tech_CopperSmelting ;
+                             :hasDimension "弦长140毫米,弦高5毫米,直径约985毫米,厚42毫米"@zh ;
+                             rdfs:label "2000AGT103:5 草泥条筑式熔炉_预热带部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT10_3_7
+:XiaomintunObj_2000AGT10_3_7 rdf:type owl:NamedIndividual ,
+                                      :GrindingStone ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT103> ;
+                             :involvesTechnique :Tech_Polishing ;
+                             :hasDimension "长轴约7厘米,短轴约6.2厘米,厚约2.7厘米"@zh ;
+                             rdfs:label "2000AGT103:7 磨石"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14K_2_1
+:XiaomintunObj_2000AGT14K_2_1 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2000AGT14K2> ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "高5.6-8.4厘米,厚约4.4厘米"@zh ;
+                              rdfs:label "2000AGT14扩2:1 卣盖壁范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_2_3
+:XiaomintunObj_2000AGT14_2_3 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "残高11.5厘米,厚约2.8厘米"@zh ;
+                             rdfs:label "2000AGT142:3 觚范_上部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_2_4
+:XiaomintunObj_2000AGT14_2_4 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "残长7.4厘米,残宽5.7厘米,厚约2.9厘米"@zh ;
+                             rdfs:label "2000AGT142:4 文字范_鼎足范,习刻_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_13
+:XiaomintunObj_2000AGT14_3_13 rdf:type owl:NamedIndividual ,
+                                       :MasterPattern ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                              :involvesTechnique :Tech_MouldMaking ;
+                              :hasDimension "残高6.6厘米"@zh ;
+                              rdfs:label "2000AGT143:13 簋模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_14
+:XiaomintunObj_2000AGT14_3_14 rdf:type owl:NamedIndividual ,
+                                       :MasterPattern ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                              :involvesTechnique :Tech_MouldMaking ;
+                              :hasDimension "边长1.8厘米"@zh ;
+                              rdfs:label "2000AGT143:14 楞脊模_方彝/卣腹部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_15
+:XiaomintunObj_2000AGT14_3_15 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "残长3.8厘米,残宽3.6厘米,厚约3.1厘米"@zh ;
+                              rdfs:label "2000AGT143:15 文字范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_16
+:XiaomintunObj_2000AGT14_3_16 rdf:type owl:NamedIndividual ,
+                                       :OuterMould ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                              :involvesTechnique :Tech_BlockMouldCasting ;
+                              :hasDimension "长5.7厘米,宽3.4厘米,厚约2.2厘米"@zh ;
+                              rdfs:label "2000AGT143:16 数字范_易卦范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_20
+:XiaomintunObj_2000AGT14_3_20 rdf:type owl:NamedIndividual ,
+                                       :ClayPiledFurnace ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_CopperSmelting ;
+                              :hasDimension "弦长90毫米,弦高5毫米,直径约410毫米,厚28毫米"@zh ;
+                              rdfs:label "2000AGT143:20 草泥堆筑式熔炉_口沿部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_22
+:XiaomintunObj_2000AGT14_3_22 rdf:type owl:NamedIndividual ,
+                                       :ClayStripBuiltFurnace ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_CopperSmelting ;
+                              :hasDimension "弦长175毫米,弦高13毫米,直径约600毫米,厚35毫米"@zh ;
+                              rdfs:label "2000AGT143:22 草泥条筑式熔炉_预热带部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_29
+:XiaomintunObj_2000AGT14_3_29 rdf:type owl:NamedIndividual ,
+                                       :ClayPiledFurnace ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_CopperSmelting ;
+                              :hasDimension "厚约38毫米,直径因变形不详"@zh ;
+                              rdfs:label "2000AGT143:29 草泥堆筑式熔炉_氧化带部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_30
+:XiaomintunObj_2000AGT14_3_30 rdf:type owl:NamedIndividual ,
+                                       :ClayStripBuiltFurnace ;
+                              :belongsToPeriod :YinxuPeriodIV ;
+                              :excavatedFrom :Xiaomintun2000AGH31 ;
+                              :involvesTechnique :Tech_CopperSmelting ;
+                              :hasDimension "弦长95毫米,弦高3.5毫米,直径约650毫米,厚29毫米"@zh ;
+                              rdfs:label "2000AGT143:30 草泥条筑式熔炉_预热带部分_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_6
+:XiaomintunObj_2000AGT14_3_6 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "高2.1厘米,直径2.2-3厘米,厚约0.8厘米"@zh ;
+                             rdfs:label "2000AGT143:6 爵柱帽范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_3_7
+:XiaomintunObj_2000AGT14_3_7 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT142> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "高10.9厘米,上宽8.1厘米,厚约2.4厘米"@zh ;
+                             rdfs:label "2000AGT143:7 鸟首范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT14_4_1
+:XiaomintunObj_2000AGT14_4_1 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom <https://w3id.org/BCSO/2000AGT144> ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "残长7.2厘米,残宽4.1厘米,厚约2.3厘米"@zh ;
+                             rdfs:label "2000AGT144:1 数字范_易卦范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2000AGT15RPit_1
+:XiaomintunObj_2000AGT15RPit_1 rdf:type owl:NamedIndividual ,
+                                        :MasterPattern ;
+                               :belongsToPeriod :YinxuPeriodIII_IV ;
+                               :excavatedFrom <https://w3id.org/BCSO/2000AGT15RP> ;
+                               :involvesTechnique :Tech_MouldMaking ;
+                               :hasDimension "残高5.2厘米,宽5.2厘米"@zh ;
+                               rdfs:label "2000AGT15扰坑:1 牛首模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH19_1
+:XiaomintunObj_2001AGH19_1 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH19 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "耳高7厘米,宽6.6厘米,厚约2.8厘米"@zh ;
+                           rdfs:label "2001AGH19:1 鼎耳范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH19_4
+:XiaomintunObj_2001AGH19_4 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH19 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "残高7.5厘米,厚约2.8厘米"@zh ;
+                           rdfs:label "2001AGH19:4 爵_角_范_腹部+錾部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH19_8
+:XiaomintunObj_2001AGH19_8 rdf:type owl:NamedIndividual ,
+                                    :Crucible ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH19 ;
+                           :involvesTechnique :Tech_CopperSmelting ;
+                           :hasDimension "弦长68毫米,弦高3毫米,直径约390毫米,厚14毫米"@zh ;
+                           rdfs:label "2001AGH19:8 夹砂炉_坩埚_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH1_3
+:XiaomintunObj_2001AGH1_3 rdf:type owl:NamedIndividual ,
+                                   :OuterMould ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH1 ;
+                          :involvesTechnique :Tech_BlockMouldCasting ;
+                          :hasDimension "高8.2厘米,宽3.8厘米,厚约3.2厘米"@zh ;
+                          rdfs:label "2001AGH1:3 文字范_爵/角錾范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH1_4
+:XiaomintunObj_2001AGH1_4 rdf:type owl:NamedIndividual ,
+                                   :GrindingStone ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH1 ;
+                          :involvesTechnique :Tech_Polishing ;
+                          :hasDimension "直径约6.5厘米,厚约2.3厘米"@zh ;
+                          rdfs:label "2001AGH1:4 磨石"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH1_6
+:XiaomintunObj_2001AGH1_6 rdf:type owl:NamedIndividual ,
+                                   :BellowsPipe ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH1 ;
+                          :involvesTechnique :Tech_CopperSmelting ;
+                          :hasDimension "长约5.5厘米,孔径0.8-1厘米"@zh ;
+                          rdfs:label "2001AGH1:6 陶管_鼓风管_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH23_3
+:XiaomintunObj_2001AGH23_3 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH23 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "残高8.9厘米,截面长约2.7厘米,宽1.6-2.7厘米"@zh ;
+                           rdfs:label "2001AGH23:3 数字范_易卦范,鼎耳范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH23_4
+:XiaomintunObj_2001AGH23_4 rdf:type owl:NamedIndividual ,
+                                    :Crucible ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH23 ;
+                           :involvesTechnique :Tech_CopperSmelting ;
+                           :hasDimension "弦长49毫米,弦高2毫米,直径约300毫米,厚20毫米"@zh ;
+                           rdfs:label "2001AGH23:4 夹砂炉_坩埚_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH24_1
+:XiaomintunObj_2001AGH24_1 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH24 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "钮高3厘米,宽3-4.5厘米,厚约3.4厘米"@zh ;
+                           rdfs:label "2001AGH24:1 盖钮范_彝/斝盖钮_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH24_2
+:XiaomintunObj_2001AGH24_2 rdf:type owl:NamedIndividual ,
+                                    :Core ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH24 ;
+                           :involvesTechnique :Tech_MouldMaking ;
+                           :hasDimension "残长6.8厘米,宽7.2厘米,厚约3.8厘米"@zh ;
+                           rdfs:label "2001AGH24:2 盘芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH24_3
+:XiaomintunObj_2001AGH24_3 rdf:type owl:NamedIndividual ,
+                                    :BellowsPipe ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH24 ;
+                           :involvesTechnique :Tech_CopperSmelting ;
+                           :hasDimension "长约5厘米,孔径0.7-1厘米"@zh ;
+                           rdfs:label "2001AGH24:3 陶管_鼓风管_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH25_123
+:XiaomintunObj_2001AGH25_123 rdf:type owl:NamedIndividual ,
+                                      :OuterMould ;
+                             :belongsToPeriod :YinxuPeriodIV ;
+                             :excavatedFrom :Xiaomintun2001AGH25 ;
+                             :involvesTechnique :Tech_BlockMouldCasting ;
+                             :hasDimension "H25:1厚约5厘米;H25:2厚约5.1厘米;H25:3厚约4.8厘米"@zh ;
+                             rdfs:label "2001AGH25:1_2_3 器盖范_卣盖_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH27_2
+:XiaomintunObj_2001AGH27_2 rdf:type owl:NamedIndividual ,
+                                    :Core ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH27 ;
+                           :involvesTechnique :Tech_MouldMaking ;
+                           :hasDimension "残长8厘米,甬径2-3.2厘米,最宽处4.3厘米,厚约1.9厘米"@zh ;
+                           rdfs:label "2001AGH27:2 矛芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH27_3
+:XiaomintunObj_2001AGH27_3 rdf:type owl:NamedIndividual ,
+                                    :ProductionEquipment ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH27 ;
+                           :involvesTechnique :Tech_Polishing ;
+                           :hasDimension "高约5.1厘米,直径4.9-5.3厘米"@zh ;
+                           rdfs:label "2001AGH27:3 陶拍"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH28_1
+:XiaomintunObj_2001AGH28_1 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH28 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "高8.5厘米,厚约5.2厘米"@zh ;
+                           rdfs:label "2001AGH28:1 圆斝范_口部+颈部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH28_10
+:XiaomintunObj_2001AGH28_10 rdf:type owl:NamedIndividual ,
+                                     :OuterMould ;
+                            :belongsToPeriod :YinxuPeriodIII ;
+                            :excavatedFrom :Xiaomintun2001AGH28 ;
+                            :involvesTechnique :Tech_BlockMouldCasting ;
+                            :hasDimension "残高9.4厘米,厚约2.2厘米"@zh ;
+                            rdfs:label "2001AGH28:10 觚范_下部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH28_12
+:XiaomintunObj_2001AGH28_12 rdf:type owl:NamedIndividual ,
+                                     :Core ;
+                            :belongsToPeriod :YinxuPeriodIII ;
+                            :excavatedFrom :Xiaomintun2001AGH28 ;
+                            :involvesTechnique :Tech_MouldMaking ;
+                            :hasDimension "残长3.8厘米,直径1.8-2.8厘米"@zh ;
+                            rdfs:label "2001AGH28:12 回炉芯_暗芯_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH28_4
+:XiaomintunObj_2001AGH28_4 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH28 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "高15.4厘米,厚约4.8厘米"@zh ;
+                           rdfs:label "2001AGH28:4 圆斝范_下腹部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH28_7
+:XiaomintunObj_2001AGH28_7 rdf:type owl:NamedIndividual ,
+                                    :OuterMould ;
+                           :belongsToPeriod :YinxuPeriodIII ;
+                           :excavatedFrom :Xiaomintun2001AGH28 ;
+                           :involvesTechnique :Tech_BlockMouldCasting ;
+                           :hasDimension "高12.2厘米,厚3.3-4.8厘米"@zh ;
+                           rdfs:label "2001AGH28:7 鼎足范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH2_1
+:XiaomintunObj_2001AGH2_1 rdf:type owl:NamedIndividual ,
+                                   :OuterMould ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH2 ;
+                          :involvesTechnique :Tech_BlockMouldCasting ;
+                          :hasDimension "长5.8厘米,宽3.4厘米,厚1.4-2.1厘米"@zh ;
+                          rdfs:label "2001AGH2:1 鱼纹范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH2_2
+:XiaomintunObj_2001AGH2_2 rdf:type owl:NamedIndividual ,
+                                   :Core ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH2 ;
+                          :involvesTechnique :Tech_MouldMaking ;
+                          :hasDimension "高约6.2厘米,宽约4.4厘米,厚约3厘米"@zh ;
+                          rdfs:label "2001AGH2:2 铭文芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH2_3
+:XiaomintunObj_2001AGH2_3 rdf:type owl:NamedIndividual ,
+                                   :MasterPattern ;
+                          :belongsToPeriod :YinxuPeriodIV ;
+                          :excavatedFrom :Xiaomintun2001AGH2 ;
+                          :involvesTechnique :Tech_MouldMaking ;
+                          :hasDimension "残高7.6厘米,边长约3.6厘米"@zh ;
+                          rdfs:label "2001AGH2:3 不明模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH30_2
+:XiaomintunObj_2001AGH30_2 rdf:type owl:NamedIndividual ,
+                                    :MasterPattern ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH30 ;
+                           :involvesTechnique :Tech_MouldMaking ;
+                           :hasDimension "残高4厘米,截面直径2.3-3.1厘米"@zh ;
+                           rdfs:label "2001AGH30:2 耳模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGH30_3
+:XiaomintunObj_2001AGH30_3 rdf:type owl:NamedIndividual ,
+                                    :FinishingTool ;
+                           :belongsToPeriod :YinxuPeriodIV ;
+                           :excavatedFrom :Xiaomintun2001AGH30 ;
+                           :involvesTechnique :Tech_Polishing ;
+                           :isComposedOf :Copper ;
+                           :hasDimension "通长13.5厘米,柄长4.6厘米"@zh ;
+                           rdfs:label "2001AGH30:3 铜削"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGT4_3_1
+:XiaomintunObj_2001AGT4_3_1 rdf:type owl:NamedIndividual ,
+                                     :FinishingTool ;
+                            :belongsToPeriod :YinxuPeriodIII ;
+                            :excavatedFrom <https://w3id.org/BCSO/2001AGT4_3> ;
+                            :involvesTechnique :Tech_Polishing ;
+                            :isComposedOf :Copper ;
+                            :hasDimension "通长约25.5厘米,柄长11.8厘米"@zh ;
+                            rdfs:label "2001AGT43:1 铜削"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGT7KRPit_1
+:XiaomintunObj_2001AGT7KRPit_1 rdf:type owl:NamedIndividual ,
+                                        :MasterPattern ;
+                               :belongsToPeriod :YinxuPeriodIII_IV ;
+                               :excavatedFrom <https://w3id.org/BCSO/2001AGT7KRP> ;
+                               :involvesTechnique :Tech_MouldMaking ;
+                               :hasDimension "高4.8厘米,涡径2.5厘米,涡深1.5厘米"@zh ;
+                               rdfs:label "2001AGT7扩扰坑:1 柱帽模_爵/斝柱帽_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_2001AGT7RPit_1
+:XiaomintunObj_2001AGT7RPit_1 rdf:type owl:NamedIndividual ,
+                                       :Core ;
+                              :belongsToPeriod :YinxuPeriodIII_IV ;
+                              :excavatedFrom <https://w3id.org/BCSO/2001AGT7RP> ;
+                              :involvesTechnique :Tech_MouldMaking ;
+                              :hasDimension "高约3.5厘米,厚约2.2厘米"@zh ;
+                              rdfs:label "2001AGT7扰坑:1 回炉芯_暗芯_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H214_1
+:XiaomintunObj_H214_1 rdf:type owl:NamedIndividual ,
+                               :OuterMould ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H214 ;
+                      :involvesTechnique :Tech_BlockMouldCasting ;
+                      rdfs:label "H214:1 数字范_筮数易卦范_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H24_1
+:XiaomintunObj_H24_1 rdf:type owl:NamedIndividual ,
+                              :OuterMould ;
+                     :belongsToPeriod :YinxuPeriodIII_IV ;
+                     :excavatedFrom :Xiaomintun2003AXS_H24 ;
+                     :involvesTechnique :Tech_BlockMouldCasting ;
+                     :hasDimension "范径约24厘米,盖径约19.6厘米,厚3~5.6厘米"@zh ;
+                     rdfs:label "H24:1 器盖范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H315_4_1
+:XiaomintunObj_H315_4_1 rdf:type owl:NamedIndividual ,
+                                 :Crucible ;
+                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                        :excavatedFrom :Xiaomintun2003AXS_H315第4层 ;
+                        :involvesTechnique :Tech_CopperSmelting ;
+                        :hasDimension "弦长7.8厘米,弦高0.3厘米,复原直径约47厘米,厚2.5厘米"@zh ;
+                        rdfs:label "H3154:1 夹砂炉_坩埚_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H420_1
+:XiaomintunObj_H420_1 rdf:type owl:NamedIndividual ,
+                               :ClayStripBuiltFurnace ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H420 ;
+                      :involvesTechnique :Tech_CopperSmelting ;
+                      :hasDimension "弦长20厘米,弦高1厘米,复原直径约100厘米,厚5厘米"@zh ;
+                      rdfs:label "H420:1 草泥条筑式熔炉"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H481_3_1
+:XiaomintunObj_H481_3_1 rdf:type owl:NamedIndividual ,
+                                 :OuterMould ;
+                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                        :excavatedFrom :Xiaomintun2003AXS_H481第3层 ;
+                        :involvesTechnique :Tech_BlockMouldCasting ;
+                        :hasDimension "高10厘米,耳高4.4厘米,厚1.8~2.7厘米"@zh ;
+                        rdfs:label "H4813:1 圆鼎范_耳部+上腹部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H683_1
+:XiaomintunObj_H683_1 rdf:type owl:NamedIndividual ,
+                               :MasterPattern ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H683 ;
+                      :involvesTechnique :Tech_MouldMaking ;
+                      :hasDimension "腹高约9.4厘米,耳高5.2厘米,胎厚约5.2厘米"@zh ;
+                      rdfs:label "H683:1 分裆鼎模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H683_2
+:XiaomintunObj_H683_2 rdf:type owl:NamedIndividual ,
+                               :MasterPattern ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H683 ;
+                      :involvesTechnique :Tech_MouldMaking ;
+                      :hasDimension "耳高7.5厘米,座高9.7厘米"@zh ;
+                      rdfs:label "H683:2 器耳兽头模"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H683_3
+:XiaomintunObj_H683_3 rdf:type owl:NamedIndividual ,
+                               :OuterMould ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H683 ;
+                      :involvesTechnique :Tech_BlockMouldCasting ;
+                      :hasDimension "高17.3厘米,最厚处约5.6厘米"@zh ;
+                      rdfs:label "H683:3 簋范_口部+腹部_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_H683_4
+:XiaomintunObj_H683_4 rdf:type owl:NamedIndividual ,
+                               :Core ;
+                      :belongsToPeriod :YinxuPeriodIII_IV ;
+                      :excavatedFrom :Xiaomintun2003AXS_H683 ;
+                      :involvesTechnique :Tech_MouldMaking ;
+                      :hasDimension "通长约16厘米,芯残长10厘米"@zh ;
+                      rdfs:label "H683:4 矛芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_T1806_4_1
+:XiaomintunObj_T1806_4_1 rdf:type owl:NamedIndividual ,
+                                  :OuterMould ;
+                         :belongsToPeriod :YinxuPeriodIII_IV ;
+                         :excavatedFrom <https://w3id.org/BCSO/2003AXS_T1806_4> ;
+                         :involvesTechnique :Tech_BlockMouldCasting ;
+                         rdfs:label "T18064:1 字范"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_T1906_7_1
+:XiaomintunObj_T1906_7_1 rdf:type owl:NamedIndividual ,
+                                  :Core ;
+                         :belongsToPeriod :YinxuPeriodIII_IV ;
+                         :excavatedFrom <https://w3id.org/BCSO/2003AXS_T1906_7> ;
+                         :involvesTechnique :Tech_MouldMaking ;
+                         :hasDimension "高13.4厘米,圈足高5厘米,圈足径10.2~14.5厘米"@zh ;
+                         rdfs:label "T19067:1 卣圈足芯"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunObj_T1907_7_12
+:XiaomintunObj_T1907_7_12 rdf:type owl:NamedIndividual ,
+                                   :OuterMould ;
+                          :belongsToPeriod :YinxuPeriodIII_IV ;
+                          :excavatedFrom <https://w3id.org/BCSO/2003AXS_T1907_7> ;
+                          :involvesTechnique :Tech_MouldMaking ;
+                          :hasDimension "高22厘米,耳高4.4厘米,厚1.4~3.3厘米"@zh ;
+                          rdfs:label "T19077:1_2 分裆鼎范_两扇扣合_"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunSite
+:XiaomintunSite rdf:type owl:NamedIndividual ,
+                         :CastingSite ;
+                :belongsToPeriod :YinxuPeriodIII ,
+                                 :YinxuPeriodIV ;
+                :hasFeature :Xiaomintun2000AGH13 ,
+                            :Xiaomintun2000AGH29 ,
+                            :Xiaomintun2000AGH31 ,
+                            :Xiaomintun2000AGH6 ,
+                            :Xiaomintun2001AGF6 ,
+                            :Xiaomintun2001AGH1 ,
+                            :Xiaomintun2001AGH19 ,
+                            :Xiaomintun2001AGH2 ,
+                            :Xiaomintun2001AGH23 ,
+                            :Xiaomintun2001AGH24 ,
+                            :Xiaomintun2001AGH25 ,
+                            :Xiaomintun2001AGH27 ,
+                            :Xiaomintun2001AGH28 ,
+                            :Xiaomintun2001AGH30 ,
+                            :Xiaomintun2001AGT2铜绿锈面 ,
+                            :Xiaomintun2003AXST1802_H265 ,
+                            :Xiaomintun2003AXST1807_F43 ,
+                            :Xiaomintun2003AXST2411_F54 ,
+                            :Xiaomintun2003AXST2812_H453 ,
+                            :Xiaomintun2003AXST_H254 ,
+                            :Xiaomintun2003AXS_H214 ,
+                            :Xiaomintun2003AXS_H24 ,
+                            :Xiaomintun2003AXS_H315第4层 ,
+                            :Xiaomintun2003AXS_H420 ,
+                            :Xiaomintun2003AXS_H481第3层 ,
+                            :Xiaomintun2003AXS_H683 ,
+                            :XiaomintunY1_F6内窑址_ ,
+                            <https://w3id.org/BCSO/2000AGM5049> ,
+                            <https://w3id.org/BCSO/2000AGT102> ,
+                            <https://w3id.org/BCSO/2000AGT103> ,
+                            <https://w3id.org/BCSO/2000AGT142> ,
+                            <https://w3id.org/BCSO/2000AGT144> ,
+                            <https://w3id.org/BCSO/2000AGT14K2> ,
+                            <https://w3id.org/BCSO/2001AGT4_3> ,
+                            <https://w3id.org/BCSO/2001AGT7RP> ,
+                            <https://w3id.org/BCSO/2003AXS_T1806_4> ,
+                            <https://w3id.org/BCSO/2003AXS_T1906_7> ,
+                            <https://w3id.org/BCSO/2003AXS_T1907_7> ;
+                :isLocatedIn :YinxuSiteCluster ;
+                rdfs:label "Xiaomintun Shang Dynasty Bronze Casting Site"@en ,
+                           "孝民屯商代铸铜遗址"@zh .
+
+
+###  https://w3id.org/BCSO#XiaomintunY1_F6内窑址_
+:XiaomintunY1_F6内窑址_ rdf:type owl:NamedIndividual ,
+                              :MouldKiln ;
+                     :belongsToPeriod :YinxuPeriodIII ;
+                     :hasDimension "残存部分推测原为方形或长方形，东西残长1.86米,南北残宽0.4米，残高0.6米"@zh ;
+                     :hasStratigraphicRelation "属于F6遗存,上部已被破坏,下部大部分被东周墓M5329破坏"@zh ;
+                     rdfs:comment "窑址（推测为烘范窑）"@zh ;
+                     rdfs:label "Y1（F6内窑址）"@zh .
+
+
+###  https://w3id.org/BCSO#YinxuPeriodIII
+:YinxuPeriodIII rdf:type owl:NamedIndividual ,
+                         :Phase ;
+                rdfs:label "Yinxu Period III"@en ,
+                           "殷墟三期"@zh .
+
+
+###  https://w3id.org/BCSO#YinxuPeriodIII_IV
+:YinxuPeriodIII_IV rdf:type owl:NamedIndividual ,
+                            :Phase ;
+                   rdfs:label "Yinxu Period III/IV"@en ,
+                              "殷墟三/四期"@zh .
+
+
+###  https://w3id.org/BCSO#YinxuPeriodIV
+:YinxuPeriodIV rdf:type owl:NamedIndividual ,
+                        :Phase ;
+               rdfs:label "Yinxu Period IV"@en ,
+                          "殷墟四期"@zh .
+
+
+###  https://w3id.org/BCSO#YinxuSiteCluster
+:YinxuSiteCluster rdf:type owl:NamedIndividual ,
+                           :SiteCluster ;
+                  rdfs:label "Yinxu"@en ,
+                             "殷墟"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGM5049
+<https://w3id.org/BCSO/2000AGM5049> rdf:type owl:NamedIndividual ,
+                                             :Pit ;
+                                    :belongsToPeriod :YinxuPeriodIV ;
+                                    rdfs:label "2000AGM5049填土"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT102
+<https://w3id.org/BCSO/2000AGT102> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIV ;
+                                   rdfs:label "2000AGT10②层"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT103
+<https://w3id.org/BCSO/2000AGT103> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIV ;
+                                   rdfs:label "2000AGT10③层"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT142
+<https://w3id.org/BCSO/2000AGT142> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIV ;
+                                   rdfs:label "2000AGT14②层"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT144
+<https://w3id.org/BCSO/2000AGT144> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIV ;
+                                   rdfs:label "2000AGT14④层"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT14K2
+<https://w3id.org/BCSO/2000AGT14K2> rdf:type owl:NamedIndividual ,
+                                             :Pit ;
+                                    :belongsToPeriod :YinxuPeriodIV ;
+                                    rdfs:label "2000AGT14扩②层"@zh .
+
+
+###  https://w3id.org/BCSO/2000AGT15RP
+<https://w3id.org/BCSO/2000AGT15RP> rdf:type owl:NamedIndividual ,
+                                             :Pit ;
+                                    :belongsToPeriod :YinxuPeriodIII_IV ;
+                                    rdfs:label "2000AGT15扰坑"@zh .
+
+
+###  https://w3id.org/BCSO/2001AGT4_3
+<https://w3id.org/BCSO/2001AGT4_3> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIII ;
+                                   rdfs:label "2001AGT4③层"@zh .
+
+
+###  https://w3id.org/BCSO/2001AGT7KRP
+<https://w3id.org/BCSO/2001AGT7KRP> rdf:type owl:NamedIndividual ,
+                                             :Pit ;
+                                    :belongsToPeriod :YinxuPeriodIII_IV ;
+                                    rdfs:label "2001AGT7扩扰坑"@zh .
+
+
+###  https://w3id.org/BCSO/2001AGT7RP
+<https://w3id.org/BCSO/2001AGT7RP> rdf:type owl:NamedIndividual ,
+                                            :Pit ;
+                                   :belongsToPeriod :YinxuPeriodIII_IV ;
+                                   rdfs:label "2001AGT7扰坑"@zh .
+
+
+###  https://w3id.org/BCSO/2003AXS_T1806_4
+<https://w3id.org/BCSO/2003AXS_T1806_4> rdf:type owl:NamedIndividual ,
+                                                 :AnthropicFeature ;
+                                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                                        rdfs:label "2003AXS_T1806第4层"@zh .
+
+
+###  https://w3id.org/BCSO/2003AXS_T1906_7
+<https://w3id.org/BCSO/2003AXS_T1906_7> rdf:type owl:NamedIndividual ,
+                                                 :AnthropicFeature ;
+                                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                                        rdfs:label "2003AXS_T1906第7层"@zh .
+
+
+###  https://w3id.org/BCSO/2003AXS_T1907_7
+<https://w3id.org/BCSO/2003AXS_T1907_7> rdf:type owl:NamedIndividual ,
+                                                 :AnthropicFeature ;
+                                        :belongsToPeriod :YinxuPeriodIII_IV ;
+                                        rdfs:label "2003AXS_T1907第7层"@zh .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Copper rdfs:comment "Pure copper metal."@en ,
+                     "纯铜金属。"@zh ;
+        rdfs:label "Copper"@en ,
+                   "铜"@zh .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
