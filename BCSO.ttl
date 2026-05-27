@@ -1,0 +1,1159 @@
+@prefix : <https://w3id.org/BCSO#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix osdba: <https://w3id.org/OSDBA#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://w3id.org/BCSO#> .
+
+<https://w3id.org/BCSO> rdf:type owl:Ontology ;
+                         dcterms:creator "Meng Jiang" ;
+                         dcterms:license <http://creativecommons.org/licenses/by/4.0/> ;
+                         dcterms:title "BCSO: A Bilingual Ontology for Bronze Casting Sites with Archaeometallurgical Production Chain Knowledge"@en ,
+                                       "BCSO：一个包含考古冶金生产链知识的青铜铸造遗址双语本体"@zh ;
+                         owl:versionInfo "1.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by
+crm:P14_carried_out_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by
+crm:P1_is_identified_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P45_consists_of
+crm:P45_consists_of rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of
+crm:P46_is_composed_of rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P53_has_former_or_current_location
+crm:P53_has_former_or_current_location rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by
+crm:P67i_is_referred_to_by rdf:type owl:ObjectProperty .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P69_has_association_with
+crm:P69_has_association_with rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/BCSO#belongsToPeriod
+###  https://w3id.org/BCSO#belongsToPeriod
+:belongsToPeriod rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf crm:P1_is_identified_by ;
+                 rdfs:range :Period ;
+                 rdfs:comment "Indicates the historical period to which the site, feature, or object belongs."@en ,
+                              "指示遗址、遗迹或遗物所属的历史时期。"@zh ;
+                 rdfs:label "belongs to period"@en ,
+                            "所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#siteBelongsToPeriod
+:siteBelongsToPeriod rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :belongsToPeriod ;
+                     rdfs:domain :CastingSite ;
+                     rdfs:range :Period ;
+                     rdfs:comment "Indicates the historical period to which the casting site belongs."@en ,
+                                  "指示铸造遗址所属的历史时期。"@zh ;
+                     rdfs:label "site belongs to period"@en ,
+                                "遗址所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#featureBelongsToPeriod
+:featureBelongsToPeriod rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :belongsToPeriod ;
+                        rdfs:domain :AnthropicFeature ;
+                        rdfs:range :Period ;
+                        rdfs:comment "Indicates the historical period to which the anthropic feature belongs."@en ,
+                                     "指示人为遗迹单元所属的历史时期。"@zh ;
+                        rdfs:label "feature belongs to period"@en ,
+                                   "遗迹所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#objectBelongsToPeriod
+:objectBelongsToPeriod rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :belongsToPeriod ;
+                       rdfs:domain :ExcavatedObject ;
+                       rdfs:range :Period ;
+                       rdfs:comment "Indicates the historical period to which the excavated object belongs."@en ,
+                                    "指示出土遗物所属的历史时期。"@zh ;
+                       rdfs:label "object belongs to period"@en ,
+                                  "遗物所属时期是"@zh .
+
+
+###  https://w3id.org/BCSO#carriedOutBy
+:carriedOutBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf crm:P14_carried_out_by ;
+              rdfs:domain :ExcavationActivity ;
+              rdfs:range :ArchaeologicalUnit ;
+              rdfs:comment "Indicates the archaeological unit that carried out the excavation activity."@en ,
+                           "指示执行发掘活动的考古单位。"@zh ;
+              rdfs:label "carried out by"@en ,
+                         "由单位执行"@zh .
+
+
+###  https://w3id.org/BCSO#conductedAtSite
+:conductedAtSite rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ExcavationActivity ;
+                 rdfs:range :CastingSite ;
+                 rdfs:comment "Indicates the casting site where the excavation activity was conducted."@en ,
+                              "指示发掘活动进行的铸造遗址。"@zh ;
+                 rdfs:label "conducted at site"@en ,
+                            "在遗址进行活动"@zh .
+
+
+###  https://w3id.org/BCSO#excavatedFrom
+:excavatedFrom rdf:type owl:ObjectProperty ;
+               rdfs:domain :ExcavatedObject ;
+               rdfs:range :AnthropicFeature ;
+               rdfs:comment "Indicates the anthropic feature from which the object was excavated."@en ,
+                            "指示遗物出土的遗迹单元。"@zh ;
+               rdfs:label "excavated from"@en ,
+                          "出土于遗迹"@zh .
+
+
+###  https://w3id.org/BCSO#hasAssociationWith
+:hasAssociationWith rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf crm:P69_has_association_with ;
+                    rdfs:domain :ProductionTechnology ;
+                    rdfs:range :ProductionTechnology ;
+                    rdfs:comment "描述生产技术间的关联，如制范技术与铸造技术的关联"@zh ;
+                    rdfs:label "has association with"@en ,
+                               "有关联"@zh .
+
+
+###  https://w3id.org/BCSO#hasFeature
+:hasFeature rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf crm:P46_is_composed_of ;
+            rdfs:domain :CastingSite ;
+            rdfs:range :AnthropicFeature ;
+            rdfs:comment "Indicates the anthropic features contained within a casting site."@en ,
+                         "指示铸造遗址包含的遗迹单元。"@zh ;
+            rdfs:label "has feature"@en ,
+                       "包含遗迹"@zh .
+
+
+###  https://w3id.org/BCSO#involvesTechnique
+###  https://w3id.org/BCSO#involvesTechnique
+:involvesTechnique rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf crm:P67i_is_referred_to_by ;
+                   rdfs:range :ProductionTechnology ;
+                   rdfs:comment "Indicates the production technology involved in a feature or object."@en ,
+                                "指示遗迹或遗物涉及的生产技术。"@zh ;
+                   rdfs:label "involves technique"@en ,
+                              "涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#featureInvolvesTechnique
+:featureInvolvesTechnique rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :involvesTechnique ;
+                          rdfs:domain :AnthropicFeature ;
+                          rdfs:range :ProductionTechnology ;
+                          rdfs:comment "Indicates the production technology involved in an anthropic feature."@en ,
+                                       "指示人为遗迹单元涉及的生产技术。"@zh ;
+                          rdfs:label "feature involves technique"@en ,
+                                     "遗迹涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#objectInvolvesTechnique
+:objectInvolvesTechnique rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :involvesTechnique ;
+                         rdfs:domain :ExcavatedObject ;
+                         rdfs:range :ProductionTechnology ;
+                         rdfs:comment "Indicates the production technology involved in an excavated object."@en ,
+                                      "指示出土遗物涉及的生产技术。"@zh ;
+                         rdfs:label "object involves technique"@en ,
+                                    "遗物涉及技术"@zh .
+
+
+###  https://w3id.org/BCSO#isComposedOf
+:isComposedOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf crm:P45_consists_of ;
+              rdfs:domain :ExcavatedObject ;
+              rdfs:range :MetalMaterial ;
+              rdfs:comment "Indicates the material composition of an anthropic feature."@en ,
+                           "指示人为遗迹单元的材料构成。"@zh ;
+              rdfs:label "is composed of"@en ,
+                         "由...构成"@zh .
+
+
+###  https://w3id.org/BCSO#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf crm:P53_has_former_or_current_location ;
+             rdfs:domain :CastingSite ;
+             rdfs:range :Region ;
+             rdfs:comment "Indicates the geographical region where the site is located."@en ,
+                          "指示遗址所在的地理区域。"@zh ;
+             rdfs:label "is located in"@en ,
+                        "位于"@zh .
+
+
+###  https://w3id.org/BCSO#locatedInAdminRegion
+:locatedInAdminRegion rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf crm:P1_is_identified_by ;
+                      rdfs:domain :CastingSite ;
+                      rdfs:range :AdministrativeRegion ;
+                      rdfs:comment "Indicates the administrative region where the site is located."@en ,
+                                   "指示遗址所在的行政区划。"@zh ;
+                      rdfs:label "located in administrative region"@en ,
+                                 "位于行政区划"@zh .
+
+
+###  https://w3id.org/BCSO#wasFoundAt
+:wasFoundAt rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf crm:P53_has_former_or_current_location ;
+            rdfs:domain :ExcavatedObject ;
+            rdfs:range :Region ;
+            rdfs:comment "Indicates the location where the object was found."@en ,
+                         "指示遗物发现的地点。"@zh ;
+            rdfs:label "was found at"@en ,
+                       "出土地点是"@zh .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/BCSO#hasDimension
+###  https://w3id.org/BCSO#hasDimension
+:hasDimension rdf:type owl:DatatypeProperty ;
+              rdfs:range rdf:langString ;
+              rdfs:comment "遗物或遗迹单元具有尺寸信息（文本描述）"@zh ;
+              rdfs:label "has dimension"@en ,
+                         "具有尺寸"@zh .
+
+
+###  https://w3id.org/BCSO#featureHasDimension
+:featureHasDimension rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :hasDimension ;
+                     rdfs:domain :AnthropicFeature ;
+                     rdfs:range rdf:langString ;
+                     rdfs:comment "人为遗迹单元具有尺寸信息（文本描述）"@zh ;
+                     rdfs:label "feature has dimension"@en ,
+                                "遗迹具有尺寸"@zh .
+
+
+###  https://w3id.org/BCSO#objectHasDimension
+:objectHasDimension rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :hasDimension ;
+                    rdfs:domain :ExcavatedObject ;
+                    rdfs:range rdf:langString ;
+                    rdfs:comment "出土遗物具有尺寸信息（文本描述）"@zh ;
+                    rdfs:label "object has dimension"@en ,
+                               "遗物具有尺寸"@zh .
+
+
+###  https://w3id.org/BCSO#hasSpatialRelation
+:hasSpatialRelation rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :AnthropicFeature ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "遗迹单元在遗址中的空间位置关系（如位于遗址东南角、F6东侧等）"@zh ;
+                    rdfs:label "has spatial relation"@en ,
+                               "具有空间关系"@zh .
+
+
+###  https://w3id.org/BCSO#hasStratigraphicRelation
+:hasStratigraphicRelation rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :AnthropicFeature ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "遗迹单元的地层关系（如打破H31、叠压F7等）"@zh ;
+                          rdfs:label "has stratigraphic relation"@en ,
+                                     "具有地层关系"@zh .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing
+crm:E18_Physical_Thing rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature
+crm:E25_Human-Made_Feature rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E27_Site
+crm:E27_Site rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure
+crm:E29_Design_or_Procedure rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E41_Appellation
+crm:E41_Appellation rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E53_Place
+crm:E53_Place rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E57_Material
+crm:E57_Material rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E74_Group
+crm:E74_Group rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E7_Activity
+crm:E7_Activity rdf:type owl:Class .
+
+
+###  https://w3id.org/BCSO#AbsoluteDate
+:AbsoluteDate rdf:type owl:Class ;
+              rdfs:subClassOf :Period ;
+              rdfs:comment "An absolute date represents a specific point in time, such as a particular year."@en ,
+                           "绝对年代表示具体的时间点，如某一年。"@zh ;
+              rdfs:label "Absolute Date"@en ,
+                         "绝对年代"@zh .
+
+
+###  https://w3id.org/BCSO#AdministrativeRegion
+:AdministrativeRegion rdf:type owl:Class ;
+                      rdfs:subClassOf crm:E41_Appellation ;
+                      rdfs:comment "Administrative divisions such as provinces, cities, and counties where the site is located."@en ,
+                                   "遗址所在的行政区划，如省、市、县。"@zh ;
+                      rdfs:label "Administrative Region"@en ,
+                                 "行政区划"@zh .
+
+
+###  https://w3id.org/BCSO#Annealing
+:Annealing rdf:type owl:Class ;
+           rdfs:subClassOf :HeatTreatmentTech ;
+           rdfs:comment "A heat treatment process to reduce hardness and increase ductility of metal."@en ,
+                        "一种热处理工艺，用于降低金属硬度、增加延展性。"@zh ;
+           rdfs:label "Annealing"@en ,
+                      "退火处理"@zh .
+
+
+###  https://w3id.org/BCSO#AnthropicFeature
+:AnthropicFeature rdf:type owl:Class ;
+                  rdfs:subClassOf crm:E25_Human-Made_Feature ;
+                  rdfs:comment "Human-made features at the casting site, including workshops, kilns, pits, etc."@en ,
+                               "铸铜遗址中的人为建造遗迹，包括作坊、窑址、坑等。"@zh ;
+                  rdfs:label "Anthropic Feature"@en ,
+                             "人为遗迹单元"@zh .
+
+
+###  https://w3id.org/BCSO#Anvil
+:Anvil rdf:type owl:Class ;
+       rdfs:subClassOf :FinishingTool ;
+       rdfs:comment "A tool used for hammering and shaping metal during finishing process."@en ,
+                    "后期处理过程中用于锤打和修整金属的工具。"@zh ;
+       rdfs:label "Anvil"@en ,
+                  "砧子"@zh .
+
+
+###  https://w3id.org/BCSO#ArchaeologicalUnit
+:ArchaeologicalUnit rdf:type owl:Class ;
+                    rdfs:subClassOf crm:E74_Group ;
+                    rdfs:comment "The organization responsible for archaeological excavation."@en ,
+                                 "负责考古发掘工作的单位。"@zh ;
+                    rdfs:label "Archaeological Unit"@en ,
+                               "考古单位"@zh .
+
+
+###  https://w3id.org/BCSO#ArsenicalBronze
+:ArsenicalBronze rdf:type owl:Class ;
+                 rdfs:subClassOf :CopperBasedMaterial ;
+                 rdfs:comment "Copper alloy with arsenic as the main alloying element."@en ,
+                              "以砷为主要合金元素的铜合金。"@zh ;
+                 rdfs:label "Arsenical Bronze"@en ,
+                            "砷青铜"@zh .
+
+
+###  https://w3id.org/BCSO#AssemblyArea
+:AssemblyArea rdf:type owl:Class ;
+              rdfs:subClassOf :FinishingArea ;
+              rdfs:comment "Area where different cast parts are assembled together."@en ,
+                           "将不同铸造部件组装在一起的区域。"@zh ;
+              rdfs:label "Assembly Area"@en ,
+                         "装配区"@zh .
+
+
+###  https://w3id.org/BCSO#BellowsPipe
+:BellowsPipe rdf:type owl:Class ;
+             rdfs:subClassOf :SmeltingEquipment ;
+             rdfs:comment "Pipe used to blow air into the furnace to increase combustion temperature."@en ,
+                          "用于向炉内鼓风以提高燃烧温度的管道。"@zh ;
+             rdfs:label "Bellows Pipe"@en ,
+                        "鼓风管"@zh .
+
+
+###  https://w3id.org/BCSO#BlockMould
+:BlockMould rdf:type owl:Class ;
+            rdfs:subClassOf :OuterMould ;
+            rdfs:comment "Mould made in sections that can be assembled and disassembled."@en ,
+                         "可拆装的分块式铸范。"@zh ;
+            rdfs:label "Block Mould"@en ,
+                       "块范"@zh .
+
+
+###  https://w3id.org/BCSO#BlockMouldCasting
+:BlockMouldCasting rdf:type owl:Class ;
+                   rdfs:subClassOf :CastingTechnique ;
+                   rdfs:comment "Casting technique using block moulds made of multiple sections."@en ,
+                                "使用多块组合铸范的铸造技术。"@zh ;
+                   rdfs:label "Block Mould Casting"@en ,
+                              "块范铸造"@zh .
+
+
+###  https://w3id.org/BCSO#CarvingKnife
+:CarvingKnife rdf:type owl:Class ;
+              rdfs:subClassOf :FinishingTool ;
+              rdfs:comment "Tool used for carving fine details on cast objects."@en ,
+                           "用于在铸件上雕刻细部纹饰的工具。"@zh ;
+              rdfs:label "Carving Knife"@en ,
+                         "刻刀"@zh .
+
+
+###  https://w3id.org/BCSO#CastingEquipment
+:CastingEquipment rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionEquipment ;
+                  rdfs:comment "Equipment used in the casting process."@en ,
+                               "浇铸过程中使用的设备。"@zh ;
+                  rdfs:label "Casting Equipment"@en ,
+                             "浇铸设备"@zh .
+
+
+###  https://w3id.org/BCSO#CastingFacility
+:CastingFacility rdf:type owl:Class ;
+                 rdfs:subClassOf :AnthropicFeature ;
+                 rdfs:comment "Facilities specifically designed for casting operations."@en ,
+                              "专门用于浇铸操作的设施。"@zh ;
+                 rdfs:label "Casting Facility"@en ,
+                            "浇铸设施"@zh .
+
+
+###  https://w3id.org/BCSO#CastingPit
+:CastingPit rdf:type owl:Class ;
+            rdfs:subClassOf :Pit ;
+            rdfs:comment "Pit used for casting operations."@en ,
+                         "用于浇铸操作的坑。"@zh ;
+            rdfs:label "Casting Pit"@en ,
+                       "浇铸坑"@zh .
+
+
+###  https://w3id.org/BCSO#CastingPlatform
+:CastingPlatform rdf:type owl:Class ;
+                 rdfs:subClassOf :CastingFacility ;
+                 rdfs:comment "Platform used for casting operations."@en ,
+                              "用于浇铸操作的平台。"@zh ;
+                 rdfs:label "Casting Platform"@en ,
+                            "浇铸台"@zh .
+
+
+###  https://w3id.org/BCSO#CastingProduct
+:CastingProduct rdf:type owl:Class ;
+                rdfs:subClassOf :ExcavatedObject ;
+                rdfs:comment "The final product of the casting process."@en ,
+                             "铸造过程的最终产品。"@zh ;
+                rdfs:label "Casting Product"@en ,
+                           "铸造产品"@zh .
+
+
+###  https://w3id.org/BCSO#CastingSite
+:CastingSite rdf:type owl:Class ;
+             rdfs:subClassOf crm:E27_Site ;
+             rdfs:comment "Archaeological site where bronze casting activities took place."@en ,
+                          "进行青铜铸造活动的考古遗址。"@zh ;
+             rdfs:label "Casting Site"@en ,
+                        "铸造遗址"@zh .
+
+
+###  https://w3id.org/BCSO#CastingTechnique
+:CastingTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionTechnology ;
+                  rdfs:comment "Techniques used in the bronze casting process."@en ,
+                               "青铜铸造过程中使用的技术。"@zh ;
+                  rdfs:label "Casting Technique"@en ,
+                             "铸造技术"@zh .
+
+
+###  https://w3id.org/BCSO#CastingWorkshop
+:CastingWorkshop rdf:type owl:Class ;
+                 rdfs:subClassOf :CastingSite ;
+                 rdfs:comment "Workshop specifically for bronze casting production."@en ,
+                              "专门用于铸铜生产的作坊。"@zh ;
+                 rdfs:label "Casting Workshop"@en ,
+                            "铸铜作坊"@zh .
+
+
+###  https://w3id.org/BCSO#CharcoalSmelting
+:CharcoalSmelting rdf:type owl:Class ;
+                  rdfs:subClassOf :SmeltingTechnology ;
+                  rdfs:comment "Smelting process using charcoal as fuel and reducing agent."@en ,
+                               "使用木炭作为燃料和还原剂的熔炼工艺。"@zh ;
+                  rdfs:label "Charcoal Smelting"@en ,
+                             "木炭还原熔炼"@zh .
+
+
+###  https://w3id.org/BCSO#City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :AdministrativeRegion ;
+      rdfs:comment "City-level administrative division."@en ,
+                   "市级行政区划。"@zh ;
+      rdfs:label "City"@en ,
+                 "市"@zh .
+
+
+###  https://w3id.org/BCSO#ClayPiledFurnace
+:ClayPiledFurnace rdf:type owl:Class ;
+                  rdfs:subClassOf :SmeltingFacility ;
+                  rdfs:comment "Furnace built by piling clay, used in bronze casting."@en ,
+                               "通过堆筑草泥方式建造的熔炉，用于青铜铸造。"@zh ;
+                  rdfs:label "Clay Piled Furnace"@en ,
+                             "草泥堆筑式熔炉"@zh .
+
+
+###  https://w3id.org/BCSO#ClayPreparation
+:ClayPreparation rdf:type owl:Class ;
+                 rdfs:subClassOf :MouldMakingTech ;
+                 rdfs:comment "Process of preparing clay for mould making."@en ,
+                              "制备制范用泥料的过程。"@zh ;
+                 rdfs:label "Clay Preparation"@en ,
+                            "泥料配制"@zh .
+
+
+###  https://w3id.org/BCSO#ClayStripBuiltFurnace
+:ClayStripBuiltFurnace rdf:type owl:Class ;
+                       rdfs:subClassOf :SmeltingFacility ;
+                       rdfs:comment "Furnace built by coiling clay strips, used in bronze casting."@en ,
+                                    "通过盘筑草泥条方式建造的熔炉，用于青铜铸造。"@zh ;
+                       rdfs:label "Clay Strip-built Furnace"@en ,
+                                  "草泥条筑式熔炉"@zh .
+
+
+###  https://w3id.org/BCSO#Copper
+:Copper rdf:type owl:Class ;
+        rdfs:subClassOf :CopperBasedMaterial ;
+        rdfs:comment "Pure copper metal."@en ,
+                     "纯铜金属。"@zh ;
+        rdfs:label "Copper"@en ,
+                   "铜"@zh .
+
+
+###  https://w3id.org/BCSO#CopperBasedMaterial
+:CopperBasedMaterial rdf:type owl:Class ;
+                     rdfs:subClassOf :MetalMaterial ;
+                     rdfs:comment "Materials based on copper, including pure copper and copper alloys."@en ,
+                                  "以铜为基础的材料，包括纯铜和铜合金。"@zh ;
+                     rdfs:label "Copper Based Material"@en ,
+                                "铜基材料"@zh .
+
+
+###  https://w3id.org/BCSO#Core
+:Core rdf:type owl:Class ;
+      rdfs:subClassOf :MouldingEquipment ;
+      rdfs:comment "Inner mould used to create hollow spaces in cast objects."@en ,
+                   "用于在铸件中形成空腔的内模。"@zh ;
+      rdfs:label "Core"@en ,
+                 "泥芯"@zh .
+
+
+###  https://w3id.org/BCSO#CoreMaking
+:CoreMaking rdf:type owl:Class ;
+            rdfs:subClassOf :MouldMakingTech ;
+            rdfs:comment "Process of making cores for casting."@en ,
+                         "制作铸造用泥芯的过程。"@zh ;
+            rdfs:label "Core Making"@en ,
+                       "泥芯制作"@zh .
+
+
+###  https://w3id.org/BCSO#CoreSpine
+:CoreSpine rdf:type owl:Class ;
+           rdfs:subClassOf :Core ;
+           rdfs:comment "Metal or ceramic rod inserted in the core for reinforcement."@en ,
+                        "插入泥芯中用于加固的金属或陶瓷棒。"@zh ;
+           rdfs:label "Core Spine"@en ,
+                      "芯骨"@zh .
+
+
+###  https://w3id.org/BCSO#CoreSupport
+:CoreSupport rdf:type owl:Class ;
+             rdfs:subClassOf :Core ;
+             rdfs:comment "Support used to hold the core in place during casting."@en ,
+                          "浇铸过程中用于固定泥芯的支撑物。"@zh ;
+             rdfs:label "Core Support"@en ,
+                        "芯撑"@zh .
+
+
+###  https://w3id.org/BCSO#County
+:County rdf:type owl:Class ;
+        rdfs:subClassOf :AdministrativeRegion ;
+        rdfs:comment "County-level administrative division."@en ,
+                     "县级行政区划。"@zh ;
+        rdfs:label "County"@en ,
+                   "县/区"@zh .
+
+
+###  https://w3id.org/BCSO#Crucible
+:Crucible rdf:type owl:Class ;
+          rdfs:subClassOf :SmeltingEquipment ;
+          rdfs:comment "Container used to hold and heat metal during smelting."@en ,
+                       "熔炼过程中用于盛放和加热金属的容器。"@zh ;
+          rdfs:label "Crucible"@en ,
+                     "坩埚"@zh .
+
+
+###  https://w3id.org/BCSO#CulturalRegion
+:CulturalRegion rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                rdfs:comment "Region defined by cultural characteristics."@en ,
+                             "以文化特征划分的区域。"@zh ;
+                rdfs:label "Cultural Region"@en ,
+                           "文化区"@zh .
+
+
+###  https://w3id.org/BCSO#DefectiveProduct
+:DefectiveProduct rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionWaste ;
+                  rdfs:comment "Casting products with defects or failures."@en ,
+                               "有缺陷或铸造失败的产品。"@zh ;
+                  rdfs:label "Defective Product"@en ,
+                             "残次品"@zh .
+
+
+###  https://w3id.org/BCSO#Dynasty
+:Dynasty rdf:type owl:Class ;
+         rdfs:subClassOf :Period ;
+         rdfs:comment "Historical period defined by ruling dynasty."@en ,
+                      "以统治王朝定义的历史时期。"@zh ;
+         rdfs:label "Dynasty"@en ,
+                    "朝代"@zh .
+
+
+###  https://w3id.org/BCSO#ExcavatedObject
+:ExcavatedObject rdf:type owl:Class ;
+                 rdfs:subClassOf crm:E18_Physical_Thing ;
+                 rdfs:comment "Physical objects excavated from the archaeological site."@en ,
+                              "从考古遗址发掘出的实物。"@zh ;
+                 rdfs:label "Excavated Object"@en ,
+                            "出土遗物"@zh .
+
+
+###  https://w3id.org/BCSO#ExcavationActivity
+:ExcavationActivity rdf:type owl:Class ;
+                    rdfs:subClassOf crm:E7_Activity ;
+                    rdfs:comment "Archaeological excavation work conducted at the site."@en ,
+                                 "在遗址进行的考古发掘工作。"@zh ;
+                    rdfs:label "Excavation Activity"@en ,
+                               "发掘活动"@zh .
+
+
+###  https://w3id.org/BCSO#FinishingArea
+:FinishingArea rdf:type owl:Class ;
+               rdfs:subClassOf :AnthropicFeature ;
+               rdfs:comment "Area where cast objects are finished and polished."@en ,
+                            "对铸件进行修整和打磨的区域。"@zh ;
+               rdfs:label "Finishing Area"@en ,
+                          "后期处理区"@zh .
+
+
+###  https://w3id.org/BCSO#FinishingTool
+:FinishingTool rdf:type owl:Class ;
+               rdfs:subClassOf :ProductionEquipment ;
+               rdfs:comment "Tools used for finishing and polishing cast objects."@en ,
+                            "用于修整和打磨铸件的工具。"@zh ;
+               rdfs:label "Finishing Tool"@en ,
+                          "修整工具"@zh .
+
+
+###  https://w3id.org/BCSO#Fuel
+:Fuel rdf:type owl:Class ;
+      rdfs:subClassOf :RawMaterial ;
+      rdfs:comment "Material used to provide heat for smelting and casting."@en ,
+                   "用于为熔炼和铸造提供热量的材料。"@zh ;
+      rdfs:label "Fuel"@en ,
+                 "燃料"@zh .
+
+
+###  https://w3id.org/BCSO#GeographicUnit
+:GeographicUnit rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                rdfs:comment "Geographical unit such as mountains, rivers, plains."@en ,
+                             "地理单元，如山脉、河流、平原等。"@zh ;
+                rdfs:label "Geographic Unit"@en ,
+                           "地理单元"@zh .
+
+
+###  https://w3id.org/BCSO#GrindingStone
+:GrindingStone rdf:type owl:Class ;
+               rdfs:subClassOf :FinishingTool ;
+               rdfs:comment "Stone tool used for grinding and polishing."@en ,
+                            "用于研磨和抛光的石质工具。"@zh ;
+               rdfs:label "Grinding Stone"@en ,
+                          "磨石"@zh .
+
+
+###  https://w3id.org/BCSO#HeatTreatmentTech
+:HeatTreatmentTech rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionTechnology ;
+                   rdfs:comment "Techniques used to alter metal properties through heating."@en ,
+                                "通过加热改变金属性能的技术。"@zh ;
+                   rdfs:label "Heat Treatment Technology"@en ,
+                              "热处理技术"@zh .
+
+
+###  https://w3id.org/BCSO#InlayDecoration
+:InlayDecoration rdf:type owl:Class ;
+                 rdfs:subClassOf :SurfaceTreatmentTech ;
+                 rdfs:comment "Decoration technique involving inlaying materials into the surface."@en ,
+                              "将材料镶嵌入表面的装饰技术。"@zh ;
+                 rdfs:label "Inlay Decoration"@en ,
+                            "镶嵌装饰"@zh .
+
+
+###  https://w3id.org/BCSO#IntegralMould
+:IntegralMould rdf:type owl:Class ;
+               rdfs:subClassOf :OuterMould ;
+               rdfs:comment "Mould made as a single piece without sections."@en ,
+                            "整体制作、不分块的铸范。"@zh ;
+               rdfs:label "Integral Mould"@en ,
+                          "整范"@zh .
+
+
+###  https://w3id.org/BCSO#LeadBronze
+:LeadBronze rdf:type owl:Class ;
+            rdfs:subClassOf :CopperBasedMaterial ;
+            rdfs:comment "Copper alloy with lead as the main alloying element."@en ,
+                         "以铅为主要合金元素的铜合金。"@zh ;
+            rdfs:label "Lead Bronze"@en ,
+                       "铅青铜"@zh .
+
+
+###  https://w3id.org/BCSO#LeadMaterial
+:LeadMaterial rdf:type owl:Class ;
+              rdfs:subClassOf :MetalMaterial ;
+              rdfs:comment "Lead metal used as raw material."@en ,
+                           "用作原料的铅金属。"@zh ;
+              rdfs:label "Lead Material"@en ,
+                         "铅料"@zh .
+
+
+###  https://w3id.org/BCSO#LostWaxCasting
+:LostWaxCasting rdf:type owl:Class ;
+                rdfs:subClassOf :CastingTechnique ;
+                rdfs:comment "Casting technique using wax models that are melted away."@en ,
+                             "使用可熔化蜡模的铸造技术。"@zh ;
+                rdfs:label "Lost Wax Casting"@en ,
+                           "失蜡法"@zh .
+
+
+###  https://w3id.org/BCSO#MasterPattern
+:MasterPattern rdf:type owl:Class ;
+               rdfs:subClassOf :MouldingEquipment ;
+               rdfs:comment "Original pattern used to make moulds."@en ,
+                            "用于制作铸范的原始模型。"@zh ;
+               rdfs:label "Master Pattern"@en ,
+                          "母模"@zh .
+
+
+###  https://w3id.org/BCSO#MetalMaterial
+:MetalMaterial rdf:type owl:Class ;
+               rdfs:subClassOf crm:E57_Material ,
+                               :RawMaterial ;
+               rdfs:comment "Metal materials used in casting production."@en ,
+                            "铸造生产中使用的金属材料。"@zh ;
+               rdfs:label "Metal Material"@en ,
+                          "金属料"@zh ,
+                          "金属材料"@zh .
+
+
+###  https://w3id.org/BCSO#MouldAssembly
+:MouldAssembly rdf:type owl:Class ;
+               rdfs:subClassOf :MouldingEquipment ;
+               rdfs:comment "Assembly of outer mould and core for casting."@en ,
+                            "用于铸造的外范与泥芯的组合。"@zh ;
+               rdfs:label "Mould Assembly"@en ,
+                          "范芯组合"@zh .
+
+
+###  https://w3id.org/BCSO#MouldKiln
+:MouldKiln rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/BCSO/MouldMakingFacility> ;
+           rdfs:comment "Kiln used for drying and firing moulds."@en ,
+                        "用于干燥和焙烧铸范的窑。"@zh ;
+           rdfs:label "Mould Kiln"@en ,
+                      "范窑"@zh .
+
+
+###  https://w3id.org/BCSO#MouldMakingSurface
+:MouldMakingSurface rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/BCSO/MouldMakingFacility> ;
+                    rdfs:comment "Work surface used for making moulds."@en ,
+                                 "用于制作铸范的工作面。"@zh ;
+                    rdfs:label "Mould Making Surface"@en ,
+                               "制范工作面"@zh .
+
+
+###  https://w3id.org/BCSO#MouldMakingTech
+:MouldMakingTech rdf:type owl:Class ;
+                 rdfs:subClassOf :ProductionTechnology ;
+                 rdfs:comment "Techniques used in mould making."@en ,
+                              "制范过程中使用的技术。"@zh ;
+                 rdfs:label "Mould Making Technology"@en ,
+                            "制范技术"@zh .
+
+
+###  https://w3id.org/BCSO#MouldingEquipment
+:MouldingEquipment rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionEquipment ;
+                   rdfs:comment "Equipment used in the mould making process."@en ,
+                                "制范过程中使用的设备。"@zh ;
+                   rdfs:label "Moulding Equipment"@en ,
+                              "模具设备"@zh .
+
+
+###  https://w3id.org/BCSO#OneTimeCasting
+:OneTimeCasting rdf:type owl:Class ;
+                rdfs:subClassOf :BlockMouldCasting ;
+                rdfs:comment "Casting technique where the object is cast in one piece."@en ,
+                             "一次性整体浇铸的技术。"@zh ;
+                rdfs:label "One-time Casting"@en ,
+                           "浑铸法"@zh .
+
+
+###  https://w3id.org/BCSO#OuterMould
+:OuterMould rdf:type owl:Class ;
+            rdfs:subClassOf :MouldingEquipment ;
+            rdfs:comment "Outer mould that forms the exterior shape of the cast object."@en ,
+                         "形成铸件外形的外范。"@zh ;
+            rdfs:label "Outer Mould"@en ,
+                       "外范"@zh .
+
+
+###  https://w3id.org/BCSO#OxidativeRefining
+:OxidativeRefining rdf:type owl:Class ;
+                   rdfs:subClassOf :SmeltingTechnology ;
+                   rdfs:comment "Refining process using oxidation to remove impurities."@en ,
+                                "利用氧化去除杂质的精炼工艺。"@zh ;
+                   rdfs:label "Oxidative Refining"@en ,
+                              "氧化精炼"@zh .
+
+
+###  https://w3id.org/BCSO#PatternMoulding
+:PatternMoulding rdf:type owl:Class ;
+                 rdfs:subClassOf :MouldMakingTech ;
+                 rdfs:comment "Process of making moulds from patterns."@en ,
+                              "从模型制作铸范的过程。"@zh ;
+                 rdfs:label "Pattern Moulding"@en ,
+                            "翻范技术"@zh .
+
+
+###  https://w3id.org/BCSO#Period
+:Period rdf:type owl:Class ;
+        rdfs:subClassOf crm:E41_Appellation ;
+        rdfs:comment "Historical period or phase."@en ,
+                     "历史时期或阶段。"@zh ;
+        rdfs:label "Period"@en ,
+                   "时代"@zh .
+
+
+###  https://w3id.org/BCSO#Phase
+:Phase rdf:type owl:Class ;
+       rdfs:subClassOf :Period ;
+       rdfs:comment "Subdivision of a period for more precise dating."@en ,
+                    "时期的细分，用于更精确的年代划分。"@zh ;
+       rdfs:label "Phase"@en ,
+                  "分期"@zh .
+
+
+###  https://w3id.org/BCSO#Pit
+:Pit rdf:type owl:Class ;
+     rdfs:subClassOf :AnthropicFeature ;
+     rdfs:comment "Various types of pits at the casting site."@en ,
+                  "铸铜遗址中的各类坑穴。"@zh ;
+     rdfs:label "Pit"@en ,
+                "坑"@zh .
+
+
+###  https://w3id.org/BCSO#Polishing
+:Polishing rdf:type owl:Class ;
+           rdfs:subClassOf :SurfaceTreatmentTech ;
+           rdfs:comment "Process of smoothing and shining the surface."@en ,
+                        "使表面光滑发亮的过程。"@zh ;
+           rdfs:label "Polishing"@en ,
+                      "打磨抛光"@zh .
+
+
+###  https://w3id.org/BCSO#PolishingSurface
+:PolishingSurface rdf:type owl:Class ;
+                  rdfs:subClassOf :FinishingArea ;
+                  rdfs:comment "Work surface used for polishing cast objects."@en ,
+                               "用于打磨铸件的工作面。"@zh ;
+                  rdfs:label "Polishing Surface"@en ,
+                             "打磨工作面"@zh .
+
+
+###  https://w3id.org/BCSO#PouringBasin
+:PouringBasin rdf:type owl:Class ;
+              rdfs:subClassOf :CastingEquipment ;
+              rdfs:comment "Basin that receives molten metal and directs it into the mould."@en ,
+                           "接收铜液并将其导入铸范的容器。"@zh ;
+              rdfs:label "Pouring Basin"@en ,
+                         "浇口杯"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionEquipment
+:ProductionEquipment rdf:type owl:Class ;
+                     rdfs:subClassOf :ExcavatedObject ;
+                     rdfs:comment "Equipment used in the production process."@en ,
+                                  "生产过程中使用的设备。"@zh ;
+                     rdfs:label "Production Equipment"@en ,
+                                "生产设备"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionTechnology
+:ProductionTechnology rdf:type owl:Class ;
+                      rdfs:subClassOf crm:E29_Design_or_Procedure ;
+                      rdfs:comment "Technologies used in the casting production chain."@en ,
+                                   "铸造生产链中使用的技术。"@zh ;
+                      rdfs:label "Production Technology"@en ,
+                                 "生产技术"@zh .
+
+
+###  https://w3id.org/BCSO#ProductionWaste
+:ProductionWaste rdf:type owl:Class ;
+                 rdfs:subClassOf :ExcavatedObject ;
+                 rdfs:comment "Waste materials generated during production."@en ,
+                              "生产过程中产生的废弃物。"@zh ;
+                 rdfs:label "Production Waste"@en ,
+                            "生产废弃物"@zh .
+
+
+###  https://w3id.org/BCSO#Province
+:Province rdf:type owl:Class ;
+          rdfs:subClassOf :AdministrativeRegion ;
+          rdfs:comment "Province-level administrative division."@en ,
+                       "省级行政区划。"@zh ;
+          rdfs:label "Province"@en ,
+                     "省"@zh .
+
+
+###  https://w3id.org/BCSO#Quenching
+:Quenching rdf:type owl:Class ;
+           rdfs:subClassOf :HeatTreatmentTech ;
+           rdfs:comment "Heat treatment process to harden metal by rapid cooling."@en ,
+                        "通过快速冷却使金属硬化的热处理工艺。"@zh ;
+           rdfs:label "Quenching"@en ,
+                      "淬火处理"@zh .
+
+
+###  https://w3id.org/BCSO#RawMaterial
+:RawMaterial rdf:type owl:Class ;
+             rdfs:subClassOf :ExcavatedObject ;
+             rdfs:comment "Raw materials used in casting production."@en ,
+                          "铸造生产中使用的原材料。"@zh ;
+             rdfs:label "Raw Material"@en ,
+                        "原材料"@zh .
+
+
+###  https://w3id.org/BCSO#Region
+:Region rdf:type owl:Class ;
+        rdfs:subClassOf crm:E53_Place ;
+        rdfs:comment "Geographical region where the site is located."@en ,
+                     "遗址所在的地理区域。"@zh ;
+        rdfs:label "Region"@en ,
+                   "地区"@zh .
+
+
+###  https://w3id.org/BCSO#RitualPit
+:RitualPit rdf:type owl:Class ;
+           rdfs:subClassOf :Pit ;
+           rdfs:comment "Pit used for ritual purposes."@en ,
+                        "用于祭祀的坑穴。"@zh ;
+           rdfs:label "Ritual Pit"@en ,
+                      "祭祀坑"@zh .
+
+
+###  https://w3id.org/BCSO#SeparateCasting
+:SeparateCasting rdf:type owl:Class ;
+                 rdfs:subClassOf :BlockMouldCasting ;
+                 rdfs:comment "Casting technique where parts are cast separately and then assembled."@en ,
+                              "各部件分别铸造后再组装的技术。"@zh ;
+                 rdfs:label "Separate Casting"@en ,
+                            "分铸法"@zh .
+
+
+###  https://w3id.org/BCSO#SiteCluster
+:SiteCluster rdf:type owl:Class ;
+             rdfs:subClassOf :Region ;
+             rdfs:comment "Cluster of related archaeological sites."@en ,
+                          "相关考古遗址的集群。"@zh ;
+             rdfs:label "Site Cluster"@en ,
+                        "遗址群"@zh .
+
+
+###  https://w3id.org/BCSO#Slag
+:Slag rdf:type owl:Class ;
+      rdfs:subClassOf :ProductionWaste ;
+      rdfs:comment "Waste material separated from metal during smelting."@en ,
+                   "熔炼过程中从金属中分离出的废弃物。"@zh ;
+      rdfs:label "Slag"@en ,
+                 "炉渣"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingCastingSite
+:SmeltingCastingSite rdf:type owl:Class ;
+                     rdfs:subClassOf :CastingSite ;
+                     rdfs:comment "Site where both smelting and casting took place."@en ,
+                                  "同时进行冶炼和铸造的遗址。"@zh ;
+                     rdfs:label "Smelting-Casting Site"@en ,
+                                "冶炼铸造遗址"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingEquipment
+:SmeltingEquipment rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionEquipment ;
+                   rdfs:comment "Equipment used in the smelting process."@en ,
+                                "熔炼过程中使用的设备。"@zh ;
+                   rdfs:label "Smelting Equipment"@en ,
+                              "熔炼设备"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingFacility
+:SmeltingFacility rdf:type owl:Class ;
+                  rdfs:subClassOf :AnthropicFeature ;
+                  rdfs:comment "Facilities specifically designed for smelting operations."@en ,
+                               "专门用于熔炼操作的设施。"@zh ;
+                  rdfs:label "Smelting Facility"@en ,
+                             "熔炼设施"@zh .
+
+
+###  https://w3id.org/BCSO#SmeltingTechnology
+:SmeltingTechnology rdf:type owl:Class ;
+                    rdfs:subClassOf :ProductionTechnology ;
+                    rdfs:comment "Techniques used in metal smelting."@en ,
+                                 "金属熔炼中使用的技术。"@zh ;
+                    rdfs:label "Smelting Technology"@en ,
+                               "熔炼技术"@zh .
+
+
+###  https://w3id.org/BCSO#SpruePipe
+:SpruePipe rdf:type owl:Class ;
+           rdfs:subClassOf :CastingEquipment ;
+           rdfs:comment "Pipe that channels molten metal into the mould cavity."@en ,
+                        "将铜液导入铸范型腔的管道。"@zh ;
+           rdfs:label "Sprue Pipe"@en ,
+                      "浇道管"@zh .
+
+
+###  https://w3id.org/BCSO#StackCasting
+:StackCasting rdf:type owl:Class ;
+              rdfs:subClassOf :CastingTechnique ;
+              rdfs:comment "Casting technique where multiple objects are cast simultaneously in a stack."@en ,
+                           "多个物件叠在一起同时浇铸的技术。"@zh ;
+              rdfs:label "Stack Casting"@en ,
+                         "叠铸法"@zh .
+
+
+###  https://w3id.org/BCSO#StoragePit
+:StoragePit rdf:type owl:Class ;
+            rdfs:subClassOf :Pit ;
+            rdfs:comment "Pit used for storing items (cellar)."@en ,
+                         "用于存储物品的坑穴（窖穴）。"@zh ;
+            rdfs:label "Storage Pit"@en ,
+                       "存储坑/窖穴"@zh .
+
+
+###  https://w3id.org/BCSO#SurfaceTreatmentTech
+:SurfaceTreatmentTech rdf:type owl:Class ;
+                      rdfs:subClassOf :ProductionTechnology ;
+                      rdfs:comment "Techniques used to treat the surface of cast objects."@en ,
+                                   "用于处理铸件表面的技术。"@zh ;
+                      rdfs:label "Surface Treatment Technology"@en ,
+                                 "表面处理技术"@zh .
+
+
+###  https://w3id.org/BCSO#TinBronze
+:TinBronze rdf:type owl:Class ;
+           rdfs:subClassOf :CopperBasedMaterial ;
+           rdfs:comment "Copper alloy with tin as the main alloying element."@en ,
+                        "以锡为主要合金元素的铜合金。"@zh ;
+           rdfs:label "Tin Bronze"@en ,
+                      "锡青铜"@zh .
+
+
+###  https://w3id.org/BCSO#TinLeadBronze
+:TinLeadBronze rdf:type owl:Class ;
+               rdfs:subClassOf :CopperBasedMaterial ;
+               rdfs:comment "Copper alloy with both tin and lead as alloying elements."@en ,
+                            "以锡和铅为合金元素的铜合金。"@zh ;
+               rdfs:label "Tin-Lead Bronze"@en ,
+                          "铅锡青铜"@zh .
+
+
+###  https://w3id.org/BCSO#TinMaterial
+:TinMaterial rdf:type owl:Class ;
+             rdfs:subClassOf :MetalMaterial ;
+             rdfs:comment "Tin metal used as raw material."@en ,
+                          "用作原料的锡金属。"@zh ;
+             rdfs:label "Tin Material"@en ,
+                        "锡料"@zh .
+
+
+###  https://w3id.org/BCSO#WastePit
+:WastePit rdf:type owl:Class ;
+          rdfs:subClassOf :Pit ;
+          rdfs:comment "Pit used for dumping waste materials."@en ,
+                       "用于倾倒废弃物的坑。"@zh ;
+          rdfs:label "Waste Pit"@en ,
+                     "垃圾坑"@zh .
+
+
+###  https://w3id.org/BCSO/MouldMakingFacility
+<https://w3id.org/BCSO/MouldMakingFacility> rdf:type owl:Class ;
+                                            rdfs:subClassOf :AnthropicFeature ;
+                                            rdfs:label "Mould Making Facility"@en ,
+                                                       "制范设施"@zh .
+
+
+###  https://w3id.org/BCSO/MultifunctionalWorkshopArea
+<https://w3id.org/BCSO/MultifunctionalWorkshopArea> rdf:type owl:Class ;
+                                                    rdfs:subClassOf :AnthropicFeature ;
+                                                    rdfs:comment "A multifunctional workshop area"@en ,
+                                                                 "具有多功能的作坊区域"@zh ;
+                                                    rdfs:label "Multifunctional Workshop Area"@en ,
+                                                               "多功能作坊区"@zh .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
